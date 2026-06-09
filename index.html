@@ -164,6 +164,11 @@ svg{max-width:100%;height:auto;touch-action:manipulation}
 .stimt .grp td{background:var(--bg-warm)}
 .tin{width:100px;border:1px solid var(--border);border-radius:6px;padding:4px 6px;font:inherit;font-size:12px;background:#fff}.tin:focus{outline:none;border-color:var(--teal)}
 .sdbox.on{background:var(--teal)!important;border-color:var(--teal)!important;color:#fff}
+.osub{font-weight:600;font-size:13px;color:var(--text-2);margin:14px 0 6px 0}
+.oratingrow{display:flex;align-items:center;gap:12px;margin:6px 0;flex-wrap:wrap}
+.oratinglab{flex:1;min-width:180px;font-size:14px;color:var(--text-1)}
+.osel{border:1px solid var(--border-h);border-radius:8px;padding:6px 10px;font:inherit;font-size:13px;background:#fff;color:var(--text-2);min-width:170px}
+.osel:focus{outline:none;border-color:var(--teal)}
 .foot{position:fixed;bottom:0;left:0;right:0;background:rgba(253,251,247,.93);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-top:1px solid var(--border);padding:12px 22px;z-index:90}
 .foot-in{max-width:1240px;margin:0 auto;display:flex;align-items:center;gap:14px}
 .foot-stat{font-size:12.5px;color:var(--text-2)}.foot-stat b{font-family:'JetBrains Mono';color:var(--text);font-weight:600}
@@ -220,8 +225,33 @@ svg{max-width:100%;height:auto;touch-action:manipulation}
 <div class="modal-bg" id="modalbg"><div class="modal">
   <h2>Session Summary</h2><div class="sub">What would be written into the session note on save.</div>
   <div id="summbody"></div>
-  <div class="modal-close"><button class="btn btn-ghost" onclick="closeSummary()">Keep editing</button><button class="btn btn-primary" onclick="closeSummary()">Looks good</button></div>
+  <div class="modal-close"><button class="btn btn-ghost" onclick="closeSummary()">Keep editing</button><button class="btn btn-primary" onclick="closeSummary();showOutcome()">Continue to Outcomes →</button></div>
 </div></div>
+
+<div id="outcomeview" style="display:none">
+  <div class="wrap">
+    <aside class="rail">
+      <div class="rail-head">Outcome Tracking</div>
+      <div class="rail-prog"><i id="orailbar"></i></div>
+      <div class="rail-pct" id="orailpct">0% complete</div>
+      <nav id="orailnav"></nav>
+    </aside>
+    <main>
+      <div class="intro">
+        <div class="eyebrow">Daily Clinical Outcome · Post-Session</div>
+        <h1>Daily Clinical Outcome Tracking</h1>
+        <p>Completed at the end of the therapy session to record outcomes and improvements. Mark what was observed; reflexes use a five-point rating.</p>
+      </div>
+      <div id="osections"></div>
+    </main>
+  </div>
+  <div class="foot"><div class="foot-in">
+    <div class="foot-stat"><b id="oDoneCount">0</b> outcomes recorded</div>
+    <div class="spacer"></div>
+    <button class="btn btn-ghost" onclick="showWorksheet()">← Back to Worksheet</button>
+    <button class="btn btn-primary" onclick="openOutcomeSummary()">Review &amp; Save to Note →</button>
+  </div></div>
+</div>
 
 <script>
 /* ============================================================================
@@ -667,6 +697,169 @@ document.getElementById('modalbg').addEventListener('click',e=>{if(e.target.id==
 for(const si in ANCHORS){renderDiagram(+si,ANCHORS[si]);}
 MODEL.forEach((sec,si)=>{if(sec.customWidget==='tongue')buildTongue(si);if(sec.customWidget==='softwave')buildSoftwave(si);if(sec.timePills)buildTimePills(si);});
 recompute();
+
+/* ============================================================================
+   OUTCOME FORM — end-of-session Daily Clinical Outcome Tracking (second view)
+============================================================================ */
+/* ============================================================================
+   OUTCOME FORM CONFIG — end-of-session Daily Clinical Outcome Tracking
+   Merged from Daily_Clinical_Outcome_Tracking + Primitive_Reflex_Developmental_Tracking.
+   Block types:
+     'checks'  : list of checkbox items under an optional subhead
+     'rating'  : list of items each rendered as a single 5-point dropdown
+     'radio'   : single-select group (rendered as one dropdown)
+     'notes'   : free-text textarea
+     'score'   : single-select dropdown (Functional Improvement Score)
+============================================================================ */
+const OUTCOME = {
+  title: "Daily Clinical Outcome Tracking",
+  ratingScale: ["Significant Improvement","Moderate Improvement","Mild Improvement","No Change","Worsened"],
+  groups: [
+    { head:"Overall Response", type:"radio", label:"Overall Response",
+      values:["Significant Improvement","Moderate Improvement","Mild Improvement","No Change","Increased Symptoms"] },
+
+    { head:"Head & Neck", type:"section" },
+    { sub:"Head Control", type:"checks", items:["Improved head control","Improved head turning","Improved head extension","Improved head flexion","Improved midline positioning","No Change"] },
+    { sub:"Neck Function", type:"checks", items:["Improved cervical stability","Improved neck strength","Reduced stiffness","Improved rotation","Improved posture","No Change"] },
+
+    { head:"Face & Cranial Nerves", type:"section" },
+    { sub:"Facial Function", type:"checks", items:["Improved facial symmetry","Improved facial tone","Improved facial expression","Improved smiling","Improved chewing","Improved swallowing","Reduced drooling","No Change"] },
+    { sub:"Eye Function", type:"checks", items:["Improved eye contact","Improved tracking","Improved fixation","Improved convergence","Improved visual attention","Reduced eye wandering","No Change"] },
+    { sub:"Cranial Nerve Function", type:"checks", items:["Improved facial nerve function","Improved trigeminal function","Improved vagus function","Improved glossopharyngeal function","Improved tongue control","Improved speech motor control","No Change"] },
+
+    { head:"Sensory Function", type:"section" },
+    { sub:"Smell", type:"checks", items:["Improved smell awareness","Improved smell identification","Improved smell tolerance","No Change"] },
+    { sub:"Taste", type:"checks", items:["Improved taste recognition","Expanded food preferences","Reduced food aversions","Improved chewing","No Change"] },
+    { sub:"Hearing / Auditory Processing", type:"checks", items:["Improved response to name","Improved sound tolerance","Improved auditory attention","Improved listening","No Change"] },
+
+    { head:"Vestibular Function", type:"checks", items:["Improved balance","Improved spatial awareness","Improved coordination","Improved motion tolerance","Improved posture","Improved body awareness","Reduced dizziness","Reduced motion sensitivity","No Change"] },
+
+    { head:"Upper Extremities", type:"checks", items:["Improved strength","Improved coordination","Improved reaching","Improved grasping","Improved bilateral use","Improved handwriting","Improved dexterity","No Change"] },
+    { head:"Lower Extremities", type:"checks", items:["Improved standing","Improved walking","Improved running","Improved jumping","Improved stair climbing","Improved coordination","Improved endurance","No Change"] },
+    { head:"Gait", type:"checks", items:["Improved gait pattern","Improved stride length","Improved heel strike","Improved arm swing","Improved balance during gait","Improved speed","No Change"] },
+    { head:"Core & Posture", type:"checks", items:["Improved trunk control","Improved sitting posture","Improved standing posture","Improved endurance","Improved spinal stability","Improved postural reflexes","No Change"] },
+
+    /* MERGED: Primitive Reflex Integration upgraded to 5-point ratings + extra reflexes */
+    { head:"Primitive Reflex Integration", type:"rating",
+      items:["Moro Reflex","Acoustic Startle Reflex","Rooting Reflex","Palmar Reflex","Babinski Reflex","Spinal Galant Reflex","ATNR","STNR","TLR"] },
+    { head:"Ocular Motor Development", type:"rating", items:["Pursuits","Saccades","Fixation"] },
+    { head:"Postural Reflex Development", type:"rating",
+      items:["Hands Pulling Reflex","Neck Righting Reflex","Body Righting Reflex","Rolling Left","Rolling Right","Protective Extension (Parachute)","Landau Reflex","Equilibrium Reactions","Postural Reflexes Overall"] },
+
+    { head:"Coordination", type:"checks", items:["Improved hand-eye coordination","Improved bilateral coordination","Improved motor planning","Improved timing","Improved rhythm","Improved cerebellar coordination","No Change"] },
+
+    { head:"Digestion & Autonomic Function", type:"section" },
+    { sub:"Digestion", type:"checks", items:["Improved appetite","Improved bowel movements","Reduced constipation","Reduced bloating","Reduced reflux","Improved eating","No Change"] },
+    { sub:"Vagus Nerve / Autonomic", type:"checks", items:["Improved vagal tone","Improved calmness","Improved self-regulation","Improved sleep","Improved recovery","Improved stress tolerance","No Change"] },
+
+    { head:"Cardiovascular", type:"checks", items:["Improved heart rate regulation","Improved endurance","Reduced exercise intolerance","Improved circulation","No Change"] },
+    { head:"Swelling / Inflammation", type:"checks", items:["Reduced swelling","Reduced inflammation","Reduced redness","Reduced discomfort","No Change"] },
+    { head:"Pain", type:"checks", items:["Reduced pain","Reduced headaches","Reduced muscle tension","Reduced discomfort","Improved tolerance to activity","No Change"] },
+
+    { head:"Behavior & Emotional Regulation", type:"section" },
+    { sub:"Behavior", type:"checks", items:["More cooperative","More engaged","More attentive","More motivated","More social","Improved eye contact","Improved communication","Improved participation","No Change"] },
+    { sub:"Emotional State", type:"checks", items:["Calmer","More regulated","More alert","Less fatigued","Improved mood","Improved frustration tolerance","Improved confidence","No Change"] },
+    { sub:"Challenging Behaviors", type:"checks", items:["Reduced hyperactivity","Reduced aggression","Reduced hitting","Reduced biting","Reduced self-injury","Reduced agitation","Reduced tantrums","Reduced impulsivity","Reduced involuntary movements","No Change"] },
+
+    { head:"Speech & Communication", type:"checks", items:["More words","Improved articulation","Improved sentence length","Improved comprehension","Improved social interaction","Improved response to commands","Improved vocalization","No Change"] },
+
+    { head:"Developmental Skills Observed Today", type:"section" },
+    { sub:"Gross Motor", type:"checks", items:["Improved crawling","Improved creeping","Improved standing","Improved walking","Improved running","Improved jumping","Improved stair climbing","Improved coordination"] },
+    { sub:"Fine Motor", type:"checks", items:["Improved grasp","Improved pincer grasp","Improved handwriting","Improved utensil use","Improved bilateral coordination","Improved dexterity"] },
+    { sub:"Speech & Language", type:"checks", items:["More sounds","More words","More phrases","Improved articulation","Improved receptive language","Improved expressive language"] },
+    { sub:"Social & Behavioral", type:"checks", items:["Improved eye contact","Improved joint attention","Improved engagement","Improved emotional regulation","Improved social interaction","Improved compliance","Improved attention span"] },
+
+    { head:"Parent Feedback", type:"radio", label:"Parent Feedback",
+      values:["Parent reports improvement","Parent reports no change","Parent reports worsening"] },
+    { sub:"Improvements Noted By Parent", type:"notes" },
+
+    { head:"Therapist Summary", type:"section" },
+    { sub:"Greatest Improvement Seen Today", type:"notes" },
+    { sub:"Areas Still Needing Improvement", type:"notes" },
+    { sub:"Clinical Notes", type:"notes" },
+
+    { head:"Functional Improvement Score", type:"score",
+      values:["0 = Worse","1 = No Change","2 = Mild Improvement","3 = Moderate Improvement","4 = Significant Improvement","5 = Major Breakthrough"] }
+  ]
+};
+
+
+const ostate={checks:{},rating:{},radio:{},notes:{},score:null};
+
+function showOutcome(){document.querySelector('.wrap').style.display='none';document.querySelector('.foot').style.display='none';document.getElementById('outcomeview').style.display='block';window.scrollTo(0,0);}
+function showWorksheet(){document.getElementById('outcomeview').style.display='none';document.querySelector('.wrap').style.display='';document.querySelector('.foot').style.display='';window.scrollTo(0,0);}
+
+function renderOutcome(){
+  const host=document.getElementById('osections');const rail=document.getElementById('orailnav');
+  let h='',rh='',card='',cardTitle='',cardId='',idx=0;
+  const flush=()=>{if(card){h+='<section class="sec" id="osec'+idx+'"><div class="sec-h"><h3>'+cardTitle+'</h3></div>'+card+'</section>';rh+='<a href="#osec'+idx+'"><span class="tick">'+(idx+1)+'</span><span>'+cardTitle+'</span></a>';idx++;card='';}};
+  OUTCOME.groups.forEach((g,gi)=>{
+    if(g.head&&(g.type==='section'||g.type==='checks'||g.type==='rating'||g.type==='radio'||g.type==='score')){
+      // start a new card on each top-level head
+      flush();cardTitle=g.head;
+    }
+    if(g.type==='section')return; // header-only divider; subs follow
+    if(g.sub)card+='<div class="osub">'+g.sub+'</div>';
+    if(g.type==='checks'){
+      g.items.forEach((it,ii)=>{const key=gi+'-'+ii;card+='<div class="itemwrap"><div class="item oitem" data-ok="'+key+'"><span class="box">'+CHECK+'</span><span class="lab">'+it.replace(/</g,'&lt;')+'</span></div></div>';});
+    } else if(g.type==='rating'){
+      g.items.forEach((it,ii)=>{const key=gi+'-'+ii;card+='<div class="oratingrow"><span class="oratinglab">'+it.replace(/</g,'&lt;')+'</span><select class="osel" data-orate="'+key+'"><option value="">—</option>'+OUTCOME.ratingScale.map(v=>'<option value="'+v+'">'+v+'</option>').join('')+'</select></div>';});
+    } else if(g.type==='radio'){
+      card+='<div class="oratingrow"><span class="oratinglab">'+(g.label||g.head)+'</span><select class="osel" data-oradio="'+gi+'"><option value="">—</option>'+g.values.map(v=>'<option value="'+v+'">'+v+'</option>').join('')+'</select></div>';
+    } else if(g.type==='notes'){
+      card+='<div class="notes"><textarea data-onote="'+gi+'" placeholder="'+(g.sub||'Notes')+'"></textarea></div>';
+    } else if(g.type==='score'){
+      card+='<div class="oratingrow"><span class="oratinglab">Score</span><select class="osel" data-oscore="1"><option value="">—</option>'+g.values.map(v=>'<option value="'+v+'">'+v+'</option>').join('')+'</select></div>';
+    }
+  });
+  flush();
+  host.innerHTML=h;rail.innerHTML=rh;
+}
+
+document.getElementById('osections').addEventListener('click',e=>{
+  const it=e.target.closest('.oitem');if(!it)return;const k=it.dataset.ok;ostate.checks[k]=!ostate.checks[k];it.classList.toggle('checked',ostate.checks[k]);it.closest('.itemwrap').classList.toggle('on',ostate.checks[k]);orecompute();
+});
+document.getElementById('osections').addEventListener('change',e=>{
+  const t=e.target;if(!t.classList||!t.classList.contains('osel'))return;
+  if(t.dataset.orate!==undefined)ostate.rating[t.dataset.orate]=t.value;
+  else if(t.dataset.oradio!==undefined)ostate.radio[t.dataset.oradio]=t.value;
+  else if(t.dataset.oscore!==undefined)ostate.score=t.value;
+  orecompute();
+});
+document.getElementById('osections').addEventListener('input',e=>{
+  const t=e.target;if(t.dataset&&t.dataset.onote!==undefined){ostate.notes[t.dataset.onote]=t.value;orecompute();}
+});
+
+function orecompute(){
+  let n=0;
+  for(const k in ostate.checks)if(ostate.checks[k])n++;
+  for(const k in ostate.rating)if(ostate.rating[k])n++;
+  for(const k in ostate.radio)if(ostate.radio[k])n++;
+  for(const k in ostate.notes)if((ostate.notes[k]||'').trim())n++;
+  if(ostate.score)n++;
+  document.getElementById('oDoneCount').textContent=n;
+}
+
+function openOutcomeSummary(){
+  let h='',any=false;
+  OUTCOME.groups.forEach((g,gi)=>{
+    let lines=[];
+    if(g.type==='checks'){g.items.forEach((it,ii)=>{if(ostate.checks[gi+'-'+ii])lines.push(it);});}
+    else if(g.type==='rating'){g.items.forEach((it,ii)=>{const v=ostate.rating[gi+'-'+ii];if(v)lines.push(it+': '+v);});}
+    else if(g.type==='radio'){const v=ostate.radio[gi];if(v)lines.push(v);}
+    else if(g.type==='notes'){const v=(ostate.notes[gi]||'').trim();if(v)lines.push('“'+v+'”');}
+    else if(g.type==='score'){if(ostate.score)lines.push('Score: '+ostate.score);}
+    if(lines.length){any=true;const label=g.head||g.sub||'';h+='<div class="sgroup"><div class="st">'+label+'</div>'+lines.map(l=>'<div class="si">'+l.replace(/</g,'&lt;')+'</div>').join('')+'</div>';}
+  });
+  document.getElementById('summbody').innerHTML=any?h:'<div class="none">Nothing recorded yet.</div>';
+  document.querySelector('#modalbg .modal h2').textContent='Outcome Summary';
+  document.querySelector('#modalbg .modal .sub').textContent='What would be written into the outcome note on save.';
+  document.querySelector('#modalbg .modal-close').innerHTML='<button class="btn btn-ghost" onclick="closeSummary()">Keep editing</button><button class="btn btn-primary" onclick="closeSummary()">Looks good</button>';
+  document.getElementById('modalbg').classList.add('open');
+}
+
+renderOutcome();orecompute();
+
 </script>
 </body>
 </html>
