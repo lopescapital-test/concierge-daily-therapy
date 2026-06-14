@@ -21,7 +21,7 @@
 html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
 .bar{position:fixed;top:0;left:0;right:0;height:60px;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 22px;background:rgba(253,251,247,.86);backdrop-filter:blur(24px) saturate(1.6);-webkit-backdrop-filter:blur(24px) saturate(1.6);border-bottom:1px solid var(--border)}
-.brand{font-family:'Outfit',sans-serif;font-weight:800;font-size:18px;letter-spacing:-.5px}.brand span{color:var(--teal)}
+.brand{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:18px;letter-spacing:-.5px;line-height:1;color:#0E0E0E}.brand .brandText span{color:#00CEFD}.brand .mark{flex:none}
 .bar-meta{display:flex;align-items:center;gap:16px}
 .elapsed{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:600;color:var(--text-2)}
 .elapsed small{display:block;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1.5px;color:var(--text-3);text-transform:uppercase}
@@ -29,7 +29,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);lin
 .pt-av{width:28px;height:28px;border-radius:50%;background:#E8960C;color:#fff;display:grid;place-items:center;font-family:'Outfit';font-weight:700;font-size:11px}
 .pt-name{font-size:12.5px;font-weight:600;line-height:1.1}.pt-sub{font-size:10.5px;color:var(--text-3)}
 .wrap{max-width:1240px;margin:0 auto;padding:80px 22px 110px;display:grid;grid-template-columns:230px 1fr;gap:30px;align-items:start}
-.rail{position:sticky;top:80px;max-height:calc(100vh - 100px);overflow-y:auto;padding-right:6px}
+.rail{position:sticky;top:80px;max-height:calc(100vh - 160px);overflow-y:auto;padding-right:6px;padding-bottom:80px}
 .rail::-webkit-scrollbar{width:5px}.rail::-webkit-scrollbar-thumb{background:var(--border-h);border-radius:3px}
 .rail-head{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-3);font-weight:600;margin-bottom:12px;padding-left:4px}
 .rail-prog{height:5px;background:var(--bg-warm);border-radius:3px;overflow:hidden;margin-bottom:8px}
@@ -50,6 +50,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);lin
 .banner{display:flex;gap:10px;align-items:flex-start;background:var(--amber-light);border:1px solid #f0d9a8;border-radius:var(--radius-sm);padding:11px 15px;margin-top:14px;font-size:12.5px;color:#8a5a08;max-width:68ch}
 .banner b{font-weight:600}
 .sec{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px;margin-bottom:14px;scroll-margin-top:74px;box-shadow:var(--shadow-sm);transition:box-shadow .2s,border-color .2s}
+.sec:last-child{margin-bottom:60vh}
 .sec.active{border-color:var(--teal);box-shadow:var(--shadow-md)}
 .sec-head{display:flex;align-items:center;gap:11px;margin-bottom:2px}
 .sec-num{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-3);font-weight:600}
@@ -188,12 +189,45 @@ svg{max-width:100%;height:auto;touch-action:manipulation}
 .modal .sn{font-size:12px;color:var(--text-3);font-style:italic;margin-top:3px;padding-left:16px}
 .modal .none{color:var(--text-3);font-size:13px;font-style:italic}
 .modal-close{margin-top:18px;display:flex;gap:10px;justify-content:flex-end}
+.sgroup{border-bottom:1px solid var(--border);padding-bottom:10px;margin-bottom:8px}
+.sgroup .st{font-family:'Outfit';font-size:13.5px;font-weight:700;margin-bottom:4px}
+.sgroup .si{font-size:12.5px;color:var(--text-2);padding:2px 0 2px 16px;position:relative}.sgroup .si:before{content:'\2713';position:absolute;left:0;color:var(--teal);font-size:11px}
+
+/* ===== multisensory (Palmar §15) ===== */
+.ms-host{margin-top:14px;border-top:1px solid var(--border);padding-top:12px}
+.ms-toggle{background:var(--teal-light);border:1px solid #b8e6d6;border-radius:var(--radius-sm)}
+.ms-toggle:hover{background:#d6f5ea}
+.ms-body{margin-top:10px}
+.ms-tier1head{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-3);font-weight:600;margin:4px 0 8px 4px}
+.ms-mods{display:flex;flex-direction:column;gap:2px}
+.ms-mod{border-radius:9px}
+.ms-tier2{margin:2px 0 8px 32px;padding:8px 12px;border-left:2px solid var(--teal-light);background:var(--bg)}
+.ms-optlist{display:flex;flex-direction:column;gap:0}
+.ms-group{margin-bottom:4px}
+.ms-groupopts{margin:2px 0 6px 30px;padding-left:8px;border-left:1px dashed var(--border-h)}
+.ms-tier2 .item{padding:5px 8px}
+
+
+/* ===== §35 review panel ===== */
+.rv-host{margin-top:14px;border-top:1px solid var(--border);padding-top:14px}
+.rv-head{font-family:'Outfit',sans-serif;font-size:15px;font-weight:700;letter-spacing:-.2px;margin-bottom:3px}
+.rv-hint{font-size:12px;color:var(--text-3);margin-bottom:12px}
+.rv-grid{display:grid;grid-template-columns:1fr 80px;gap:0 12px;align-items:center;max-width:420px}
+.rv-colh{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--text-3);font-weight:600;padding-bottom:8px;border-bottom:1px solid var(--border-h);margin-bottom:6px}
+.rv-applied{text-align:center}
+.rv-modlabel{font-size:13.5px;color:var(--text-2);padding:6px 0}
+.rv-box{display:inline-grid;place-items:center;width:20px;height:20px;border:1.5px solid var(--border-h);border-radius:6px;cursor:pointer;background:#fff;transition:.15s}
+.rv-box svg{width:12px;height:12px;opacity:0;transform:scale(.5);transition:.15s}
+.rv-box.checked{background:var(--teal);border-color:var(--teal)}.rv-box.checked svg{opacity:1;transform:scale(1)}
+.rv-total{margin-top:14px;font-family:'Outfit',sans-serif;font-size:14px;font-weight:600}
+.rv-total b{font-family:'JetBrains Mono',monospace;color:var(--teal)}
+
 @media(max-width:980px){.wrap{grid-template-columns:1fr;padding-top:74px}.rail{display:none}.dia-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div class="bar">
-  <div class="brand">Neuro<span>Home</span></div>
+  <div class="brand"><svg class="mark" viewBox="0 0 52 52" fill="none" width="34" height="34" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="22" width="36" height="27" rx="3" stroke="#1D2939" stroke-width="2.2"/><path d="M 4 24 L 26 5 L 48 24" stroke="#1D2939" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="20" y="34" width="12" height="15" rx="1.5" stroke="#1D2939" stroke-width="1.5" fill="rgba(0,206,253,0.06)"/><circle cx="4" cy="24" r="3" fill="#00CEFD"/><circle cx="48" cy="24" r="3" fill="#00CEFD"/><circle cx="26" cy="5" r="3" fill="#00CEFD"/><circle cx="8" cy="49" r="3" fill="#00CEFD"/><circle cx="44" cy="49" r="3" fill="#00CEFD"/></svg><span class="brandText">Neuro<span>Home</span></span></div>
   <div class="bar-meta">
     <div class="elapsed"><small>Elapsed</small><span id="clock">00:00</span></div>
     <div class="pt-chip"><div class="pt-av">EM</div><div><div class="pt-name">Ethan M.</div><div class="pt-sub">Week 4 · Plan A · Dev. Delay</div></div></div>
@@ -208,24 +242,23 @@ svg{max-width:100%;height:auto;touch-action:manipulation}
   </aside>
   <main>
     <div class="intro">
-      <div class="eyebrow">Daily Clinical Worksheet · Prototype</div>
+      <div class="eyebrow">Daily Clinical Worksheet</div>
       <h1>Basic Developmental Delay — Home Intensive</h1>
       <p>Home-intensive worksheet, tailored from Dr. Daigle's clinic sheet. Check interventions, record findings, mark the diagrams inline where they belong, and add notes per section.</p>
-      <div class="banner"><span>⚑</span><div><b>Prototype — needs clinical sign-off.</b> Sections tagged <b>Dose</b> now carry a reps / sets / time prescription row (per Kyle's edits) that opens under each checked item. Items tagged <b>Clinic</b> use in-clinic equipment; <b>Diagram</b> sections have an inline interactive map. The dense 10-10 reference map was intentionally not built. Nothing here persists yet.</div></div>
     </div>
     <div id="sections"></div>
   </main>
 </div>
 <div class="foot"><div class="foot-in">
-  <div class="foot-stat"><b id="doneCount">0</b>/<span id="totalCount">0</span> interventions · <b id="secDone">0</b>/<span id="secTotal">0</span> sections touched</div>
+  <div class="foot-stat"><b id="doneCount">0</b>/<span id="totalCount">0</span> interventions &middot; <b id="secDone">0</b>/<span id="secTotal">0</span> sections touched</div>
   <div class="spacer"></div>
   <button class="btn btn-ghost" onclick="resetAll()">Reset</button>
-  <button class="btn btn-primary" onclick="openSummary()">Review &amp; Save to Note →</button>
+  <button class="btn btn-primary" onclick="openSummary()">Review &amp; Save to Note &rarr;</button>
 </div></div>
 <div class="modal-bg" id="modalbg"><div class="modal">
   <h2>Session Summary</h2><div class="sub">What would be written into the session note on save.</div>
   <div id="summbody"></div>
-  <div class="modal-close"><button class="btn btn-ghost" onclick="closeSummary()">Keep editing</button><button class="btn btn-primary" onclick="closeSummary();showOutcome()">Continue to Outcomes →</button></div>
+  <div class="modal-close"><button class="btn btn-ghost" onclick="closeSummary()">Keep editing</button><button class="btn btn-primary" onclick="closeSummary();showOutcome()">Continue to Outcomes &rarr;</button></div>
 </div></div>
 
 <div id="outcomeview" style="display:none">
@@ -248,33 +281,15 @@ svg{max-width:100%;height:auto;touch-action:manipulation}
   <div class="foot"><div class="foot-in">
     <div class="foot-stat"><b id="oDoneCount">0</b> outcomes recorded</div>
     <div class="spacer"></div>
-    <button class="btn btn-ghost" onclick="showWorksheet()">← Back to Worksheet</button>
-    <button class="btn btn-primary" onclick="openOutcomeSummary()">Review &amp; Save to Note →</button>
+    <button class="btn btn-ghost" onclick="showWorksheet()">&larr; Back to Worksheet</button>
+    <button class="btn btn-primary" onclick="openOutcomeSummary()">Review &amp; Save to Note &rarr;</button>
   </div></div>
 </div>
 
 <script>
-/* ============================================================================
-   WORKSHEET CONFIG — ALL CONTENT LIVES HERE
-   ----------------------------------------------------------------------------
-   To add / edit / reorder sections, change dosage rules, or adjust diagram
-   geometry, edit ONLY this object. Nothing below this block needs to change.
-   The render + logic code reads from these via the alias declarations that
-   immediately follow. Section indices are positional: if you insert a section,
-   the diagramAnchors{} and dosageRules{} keys (which are 0-based indices into
-   sections[]) must shift to match — see the index comments on each.
-   ============================================================================ */
 const WORKSHEET = {
-
-  // --- SECTIONS: the worksheet body. Each = {title, items[], optional finding,
-  //     grouped+subheads, clinic, and diagram flags}. Order = display order. ---
-  sections: [{"title":"Neurosage","finding":null,"grouped":true,"subheads":{"0":"Brain Side","2":"Video Game"},"items":["Left","Right","Fruit Catcher","Forest Journey","Canopy Ascend","Sea Adventure","Hedge Hunt"],"revealSingle":{"label":"Time Played","values":["1 min","2 min","3 min","5 min","10 min","15 min","20 min","25 min","30 min"],"items":[2,3,4,5,6]},"bodymap":false,"clinic":true},{"title":"Ear Placement","finding":null,"items":["Left Ear Shen Men Bead","Right Ear Shen Men Bead"],"bodymap":false,"clinic":false},{"title":"Smell (Olfactory Training)","finding":null,"grouped":true,"subheads":{"0":"Left Nostril","2":"Right Nostril"},"items":["Frankincense","Lavender","Frankincense","Lavender"],"bodymap":false,"clinic":false},{"title":"Eye Lights / Visual Stimulation","finding":null,"grouped":true,"subheads":{"0":"Blue Light Selection","2":"Eye Light Pattern"},"revealPerItem":{"2":[{"label":"Time","values":["5 Minutes","10 Minutes","15 Minutes","20 Minutes","30 Minutes"]}],"3":[{"label":"Time","values":["5 Minutes","10 Minutes","15 Minutes","20 Minutes","30 Minutes"]}]},"items":["Blue Glasses","Blue Eye Lights","Light flashing outside Left Eye / inside Right Eye","Light flashing outside Right Eye / inside Left Eye"],"bodymap":false,"clinic":true},{"title":"Pen Light Stimulation","finding":null,"grouped":true,"revealPerItem":{"0":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes"]}],"1":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes"]}]},"items":["Shine pin light outside Right Eye","Shine pin light outside Left Eye"],"bodymap":false,"clinic":true},{"title":"Face Stimulation","finding":null,"items":[],"clinic":true,"facemap":true,"facemap_devices":["SaeboStimpod"],"rezzimax_lr":true},{"title":"Tongue Stimulation","finding":null,"items":[],"clinic":true,"customWidget":"tongue"},{"title":"Stimpod Placement (Body)","finding":null,"items":[],"clinic":true,"stimdose":true},{"title":"Red / Infrared Laser Therapy","finding":null,"grouped":true,"subheads":{"0":"Laser Type","2":"Body Placement Selections"},"cols":{"2":2},"revealPerItem":{"2":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"3":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"4":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"5":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"6":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"7":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"8":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"9":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"10":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"11":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"12":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"13":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"14":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"15":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}]},"diagramTimeDropdown":{"label":"Diagram Duration","values":["30 Seconds","45 Seconds","1 Minute","2 Minutes","3 Minutes","5 Minutes"]},"items":["Red","Infrared","Vagus (L / R)","Carotid","Cerebellum (L / R)","Stomach","Liver","Spinal Pathways","Dr. Daigle Face","528 in nose (L / R)","Left Hand","Right Hand","Left Foot","Right Foot","Open Mouth","Under neck/chin"],"clinic":true,"brainmap":true},{"title":"Green Laser Therapy","finding":null,"grouped":true,"subheads":{"0":"Placement Selection"},"cols":{"0":2},"revealPerItem":{"0":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"1":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"2":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"3":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"4":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"5":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"6":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"7":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"8":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"9":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}]},"diagramTimeDropdown":{"label":"Diagram Duration","values":["30 Seconds","45 Seconds","1 Minute","2 Minutes","3 Minutes","5 Minutes"]},"items":["Vagus (L / R)","Carotid","Cerebellum (L / R)","Stomach","Liver","Spinal Pathways","Dr. Daigle Face","528 in nose (L / R)","Open Mouth","Tongue"],"clinic":true,"brainmap":true},{"title":"Light Panel Therapy","finding":null,"grouped":true,"subheads":{"0":"HZ Selection","8":"Preset Selection","9":"Treatment Mode"},"cols":{"0":2,"9":2},"revealPerItem":{"0":[{"label":"Time","values":["2 Minutes","5 Minutes","10 Minutes","15 Minutes","20 Minutes","30 Minutes"]}],"1":[{"label":"Time","values":["2 Minutes","5 Minutes","10 Minutes","15 Minutes","20 Minutes","30 Minutes"]}],"2":[{"label":"Time","values":["2 Minutes","5 Minutes","10 Minutes","15 Minutes","20 Minutes","30 Minutes"]}],"3":[{"label":"Time","values":["2 Minutes","5 Minutes","10 Minutes","15 Minutes","20 Minutes","30 Minutes"]}],"4":[{"label":"Time","values":["2 Minutes","5 Minutes","10 Minutes","15 Minutes","20 Minutes","30 Minutes"]}],"5":[{"label":"Time","values":["2 Minutes","5 Minutes","10 Minutes","15 Minutes","20 Minutes","30 Minutes"]}],"6":[{"label":"Time","values":["2 Minutes","5 Minutes","10 Minutes","15 Minutes","20 Minutes","30 Minutes"]}],"7":[{"label":"Time","values":["2 Minutes","5 Minutes","10 Minutes","15 Minutes","20 Minutes","30 Minutes"]}]},"items":["4 hz","6 hz","8 hz","10 hz","20 hz","30 hz","31 hz","40 hz","Custom Settings","Blood Flow","Regulation","Recovery","Abdomen","Back Area","Sleep / Calm","Inflammation","Discomfort"],"bodymap":false,"clinic":true},{"title":"Music Therapy","finding":null,"grouped":true,"subheads":{"0":"Music Selection"},"revealPerItem":{"0":[{"label":"Time","values":["1 Minute","2 Minutes","5 Minutes","8 Minutes","10 Minutes","15 Minutes","20 Minutes"]}],"1":[{"label":"Time","values":["1 Minute","2 Minutes","5 Minutes","8 Minutes","10 Minutes","15 Minutes","20 Minutes"]}],"2":[{"label":"Time","values":["1 Minute","2 Minutes","5 Minutes","8 Minutes","10 Minutes","15 Minutes","20 Minutes"]}],"3":[{"label":"Time","values":["1 Minute","2 Minutes","5 Minutes","8 Minutes","10 Minutes","15 Minutes","20 Minutes"]}],"4":[{"label":"Time","values":["1 Minute","2 Minutes","5 Minutes","8 Minutes","10 Minutes","15 Minutes","20 Minutes"]}],"5":[{"label":"Time","values":["1 Minute","2 Minutes","5 Minutes","8 Minutes","10 Minutes","15 Minutes","20 Minutes"]}],"6":[{"label":"Time","values":["1 Minute","2 Minutes","5 Minutes","8 Minutes","10 Minutes","15 Minutes","20 Minutes"]}]},"items":["Theta","Alpha","Gamma","Jazzy","Classical","Metronome Left Ear","Metronome Right ear"],"bodymap":false,"clinic":false},{"title":"SoftWave Therapy","finding":null,"items":[],"clinic":true,"customWidget":"softwave","softwaveOptions":["Full Brain Protocol","Right Brain Protocol","Left Brain Protocol","Cerebellum-Left","Cerebellum-Right","Foundational Protocol-Prims","Stomach","Liver","Upper Extremity","Lower Extremity"]},{"title":"Cocoon","finding":null,"items":["No heat","Mild Heat","Moderate Heat","High Heat","Hyperthermic","Vibration","No Vibration"],"bodymap":false,"clinic":true,"timePills":{"label":"Time Duration","values":["5 Minutes","10 Minutes","15 Minutes","20 Minutes","30 Minutes"]}},{"title":"Rooting Reflex","finding":"Rooting Reflex: Left Face: ______________       Right Face: ________________","items":["Laser cerebellum on same side and vibrate from ear to the corner of mouth.","Rezzimax the lips","Focusing on corner of lips (left) (right) bilaterally","Deep pressure in circular fashion on the face","Laser Dr. Daigle All on face","Perform Facial contractions(wink eye)","Peppermint Oil on Roof of mouth"],"bodymap":false,"clinic":false},{"title":"Moro Reflex","finding":null,"grouped":true,"subheads":{"1":"Metronome App"},"items":["Starfish exercise","35 bpm","45 bpm","60 bpm","Left ear","Right ear"],"bodymap":false,"clinic":false},{"title":"Palmar Reflex","finding":"Palmer Reflex Left Hand: ______________       Right Hand: ________________","grouped":true,"subheads":{"13":"Avacen Rag","15":"Robotic Glove","17":"Warm Rag","19":"Cold/Ice"},"items":["Laser cerebellum on same side and vibrate hand","Laser cerebellum on same side and Stimpod Heart 7 and Hand","Saebo Pads on the Heart 7 point and in Palm of Hand","Wheel barrow exercise","Donkey Kicks","Press down on the ground with both hands","Monkey Bars","Vibeplate with Blaze Pods","Firm pressure on the hands","Pull each finger","Figure 8’s with each finger","Laser Dr. Daigle All on hand for 30 seconds-1 minute","Saebo Microcurrent glove (make sure to put lotion)","Left Hand","Right Hand","Left Hand","Right Hand","Left Hand","Right Hand","Left Hand","Right Hand"],"bodymap":false,"clinic":false},{"title":"Babinski Reflex","finding":"Babinski Reflex           Left Foot: ______________       Right Foot: ________________","grouped":true,"subheads":{"10":"Warm Rag","12":"Cold/Ice","14":"Saebo Foot Spa: Red Lead on"},"items":["Laser cerebellum on same side and vibrate foot (vibrate down St 36 to top of foot)","Laser cerebellum on same side and Stimpod ST 36, SP 6, bottom of foot","Saebo Pads on the ST 36 and (Bottom of Foot heel) (Kidney 1)","Jumping up and down","Press down on the top of foot with both feet on the ground on Vibeplate","Firm pressure on the bottom of feet","Pull each toe","Figure 8’s with each toe","Laser Dr. Daigle All on foot for 30 seconds-1 minute","Floor is Lava","Left Foot","Right Foot","Left Foot","Right Foot","Left Foot","Right Foot"],"bodymap":false,"clinic":false},{"title":"Spinal Galant Reflex","finding":"Spinal Galant Left Back: ______________       Right Back: ________________","grouped":true,"subheads":{"6":"Saebo Pads"},"items":["Laser cerebellum on same side and vibrate up and down spine","Laser cerebellum on same side and run stimpod up and down spine","Snow Angels 25 reps","Inch Worms","Fish","Laser Spinal Pathways on IR for 2 minutes Red for 2-3 minutes","Left lower back","Right lower back","Left Midback","Right Mid back"],"bodymap":false,"clinic":false},{"title":"ATNR","finding":"ATNR  Left Head Rotation: ______________       Right Head Rotation: ________________","items":["Hands and Knees and laser both cerebellum turn head left and rock","Hands and Knees and laser both cerebellum turn head right and rock","Lizard exercise Right elbow to right knee with head turned left","Lizard exercise Left elbow to left knee with head turned right","Hands and Knees and turn head to the left and move right arm to point across body","Hands and Knees and turn head to the right and move left arm to point across body","Crawling forward on the ground","Crawling with Blaze Pods (forward and backward)","Quadraped with animals and head light laser","Quadraped on Flexion/Extension Table"],"bodymap":false,"clinic":false},{"title":"Cross Crawl","finding":null,"items":["Right elbow to left knee and left elbow to right knee"],"bodymap":false,"clinic":false},{"title":"STNR","finding":null,"items":["Cat Stretch: Hands and knees and look up with neck","Flexion/Extension Table","Laser both cerebellums while Hands and knees and move head up to ceiling and bring down to chest"],"bodymap":false,"clinic":false},{"title":"TLR","finding":null,"items":["Standing with both feet together and laser cerebellum bring head up to the ceiling and down to chest","Cannon balls","Flexion/Extension Table","On back with knees tucked and tilt to the left and right"],"bodymap":false,"clinic":false},{"title":"Posture Reflexes","finding":"Rolling to the Left  ____ times               Rolling to the right ____ times","items":["visual stimulus","music","smells","Hands pulling","On stomach and work on lifting head up","Turtle pose: elbows bent hands firmly on ground and head up","Lion pose: Knees tucked, lift chest up, arms extended and hands firm on ground","Pediatric incline Mat working on getting into quad position, extending arms","Pediatric incline mat with looking into mirror while holding head up","Medicine ball sitting and slide side to side, forward and backward","Place on stomach Medicine ball and Rolling Forward and Backward","Place on Stomach Medicine ball and Rolling side to side","Sitting on medicine ball and pushing forward and backward","Place on back and roll forward and backward, side to side","Super mans","Landau: keeping feet on the ground and lifting arms up","Crab walk","Frog jump","Laying on back and pulling across body to Roll","Side lying with rotation with sensory stimulation to SCM/Upper Trap region"],"bodymap":false,"clinic":false},{"title":"Core Exercise","finding":null,"items":["Sit ups for 1 minute (may have to assist)","Bridges for 1 minute","Planks","Side planks","Bridge with single leg","Bird dog (single arm) (single leg) (left arm/right leg) (right arm/left leg)","Hanging from pull up bar","Pull ups on the bar","Push ups","Squats","Lunges","Tall Knee","Tall Knee with lunge","Wall Squats","Butt walks","Parallel Bars","Climbing"],"bodymap":false,"clinic":false},{"title":"Posture Exercises","finding":null,"items":["Spider Cage","YTA","Bring Shoulders Back (rows)","Knee Extension","Lift foot off the ground while standing","External rotation of Shoulders","Hip Abduction","Reverse Fly’s","Tricep Extension","Levator Stretch","Hamstring Stretch","Medicine Ball rotation","Piriformis Stretch","Bicep Stretch"],"bodymap":false,"clinic":false},{"title":"Balance Exercises","finding":null,"items":["Feet together and move head up and down","Stand on one leg balancing","Stand with one foot in front of the other (tandem Romberg)","Balance Beam (say alphabet / numbers while walking)","Walk with one foot in front of the other","Figure 8’s (Left arm/Leg · Right arm/Leg)","Standing on Bosu ball with flat surface down","Standing on Bosu ball with flat surface up","Standing on theraband pad","Standing on Wobble board","Balance Tracker  (progress in this order)","Front/Back","Left/Right","Diagonal","Random","Modified","Cervical Challenge","Motion Guided seated/Quad","Sit to stands","Sit to stand with dizzy stick","Tall knee with resistance","Tall knee with lunges","Lunge to standing","Parallel Bars for balancing on one leg","Parallel bars for walking"],"bodymap":false,"clinic":false},{"title":"Vestibular","finding":null,"items":["Otolith","Move head quickly to the left 10x","Move head quickly to the right 10x","Jumping up and down 1 minute","Using blue swing and swing back and forth","Head tilt: 5 / 10 / 20 reps · 2–3 sets","Tilt head to the left","Tilt head to the right","Tilt head back into extension","Cervical Stabilation"],"bodymap":false,"clinic":false},{"title":"VOR Reflex","finding":null,"items":["Quickly turn head to the Left (eyes should go to the right)","Quickly turn head to the Right (eyes should go to the left)","Have patient stare at object while slowly turning head to the right","Have patient stare at object while slowly turning head to the left"],"bodymap":false,"clinic":false},{"title":"Gaze Stabilization Head Movements","finding":null,"items":["No-No's","Yes-Yes","Tilt Left","Tilt Right"],"itemDesc":{"0":"Horizontal head turns while maintaining visual fixation","1":"Vertical head movements while maintaining visual fixation","2":"Head tilt to the left while maintaining visual fixation","3":"Head tilt to the right while maintaining visual fixation"},"revealDropdowns":{"reps":["1 Rep","3 Reps","5 Reps","10 Reps"],"sets":["1 Set","2 Sets","3 Sets","4 Sets"]},"bodymap":false,"clinic":false},{"title":"Hemisphere Work","finding":null,"items":["Slow spin to the left (6 sec) 10x","Slow spin to the right (6 sec) 10x","Fast spin to the right (2 sec) 10x","Fast spin to the left (2sec) 10x","Laser Vagus and Cerebellum","Oxygen","CES clips","Up and Down","Left and Right","Butterfly","Upper Left Butterfly","Upper Right Butterfly","Lower Left Butterfly","Lower Right"],"bodymap":false,"clinic":false},{"title":"Eyes (Oculomotor)","finding":null,"items":["Pencil Push Ups","Cover Left Eye","Cover Right Eye","Bridge position","Lazy 8’s with eyes","Right Brain Saccade: Wiggle Right fingers 10x (eyes ) Wiggle left fingers 3x (eyes)","Left Brain Saccade: Wiggle Left fingers 10x (eyes ) Wiggle Right fingers 3x (eyes)"],"bodymap":false,"clinic":false},{"title":"Right Eye / Vision","finding":null,"items":["Dynamic Vision","Intensive Eye Games (Level 1 / 2 / 3)","Trigeminal Stimulation","Laser Cerebellums","Laser Parietal","PEMF head","OptoDrum: Animals","OptoDrum: Lines","Optodrum eyes going upward","Optodrum eyes downward","Optodrum eyes going horizontally Left","Optodrum eyes horizon right","Optodrum eyes going up right","Optodrum eyes going up Left"],"bodymap":false,"clinic":true},{"title":"Focus Builder","finding":null,"items":["Left Brain","Right Brain"],"bodymap":false,"clinic":false},{"title":"Eye Movements","finding":null,"grouped":true,"subheads":{"1":"Right Brain Pursuits","6":"Left Brain Pursuits","11":"Right Brain Saccadic Eye Movements","13":"Left Brain Saccadic Eye Movements"},"revealDropdowns":{"reps":["1 Rep","2 Reps","3 Reps","5 Reps"],"sets":["1 Set","2 Sets","3 Sets","4 Sets"]},"items":["Fixation","Horizontally to the Right","Horizontally Downward","Diagonally Up to the Left","Diagonally Down to the Right","Diagonally Down to the Right → Up to the Left","Midline Up","Midline to the Left","Diagonally Up to the Right","Diagonally Down to the Left","Diagonally Down to the Left → Up to the Right","Midline to the Left","Midline Down","Midline to the Right","Midline Up"],"bodymap":false,"clinic":false},{"title":"Binovi","finding":null,"items":["Reaction Time","Central/Periph","Random","Scanning","Blaze Pods"],"bodymap":false,"clinic":false},{"title":"Coordination, Timing & Cerebellar Integration","finding":null,"grouped":true,"revealPerItem":{"0":[{"label":"Reps","values":["1 Rep","3 Reps","5 Reps","10 Reps"]},{"label":"Sets","values":["1 Set","2 Sets","3 Sets","4 Sets"]}],"1":[{"label":"Reps","values":["1 Rep","3 Reps","5 Reps","10 Reps"]},{"label":"Sets","values":["1 Set","2 Sets","3 Sets","4 Sets"]}],"2":[{"label":"Time","values":["5 Seconds","10 Seconds","20 Seconds","30 Seconds","45 Seconds","1 Minute","2 Minutes"]},{"label":"Sets","values":["1 Set","2 Sets","3 Sets","4 Sets"]}],"3":[{"label":"Time","values":["5 Seconds","10 Seconds","20 Seconds","30 Seconds","45 Seconds","1 Minute","2 Minutes"]},{"label":"Sets","values":["1 Set","2 Sets","3 Sets","4 Sets"]}],"4":[{"label":"Time","values":["5 Seconds","10 Seconds","20 Seconds","30 Seconds","45 Seconds","1 Minute","2 Minutes"]},{"label":"Sets","values":["1 Set","2 Sets","3 Sets","4 Sets"]}],"5":[{"label":"Reps","values":["1 Rep","3 Reps","5 Reps","10 Reps","15 Reps","20 Reps","30 Reps"]},{"label":"Sets","values":["1 Set","2 Sets","3 Sets","4 Sets"]}]},"subheads":{"6":"Areas of Focus","16":"Performance Observations"},"items":["Finger Nose Dot","Finger Nose Finger","Metronome Finger Tap","Metronome Hand Clap","Metronome Foot Tap","Ball Toss","Cerebellar Timing","Motor Planning","Bilateral Coordination","Hand-Eye Coordination","Motor Accuracy","Rhythm & Timing","Fine Motor Control","Gross Motor Control","Reaction Time","Sensorimotor Integration","Improved Accuracy","Improved Speed","Improved Coordination","Improved Rhythm","Improved Bilateral Integration","Difficulty with Timing","Dysmetria Present","Tremor Present","Motor Overflow Present"],"bodymap":false,"clinic":false},{"title":"Spinocerebellar Exercises","finding":null,"grouped":true,"subheads":{"7":"Spinocerebellar Goals","16":"Areas Demonstrating Improvement"},"revealPerItem":{"0":[{"label":"Reps","values":["1 Rep","3 Reps","5 Reps","10 Reps","15 Reps","20 Reps"]},{"label":"Sets","values":["1 Set","2 Sets","3 Sets","4 Sets"]}],"1":[{"label":"Hold","values":["5 Seconds","10 Seconds","20 Seconds","30 Seconds","45 Seconds","60 Seconds"]},{"label":"Reps","values":["1 Rep","3 Reps","5 Reps","10 Reps"]},{"label":"Sets","values":["1 Set","2 Sets","3 Sets","4 Sets"]}],"2":[{"label":"Hold","values":["5 Seconds","10 Seconds","20 Seconds","30 Seconds","45 Seconds","60 Seconds"]},{"label":"Reps","values":["1 Rep","3 Reps","5 Reps","10 Reps"]},{"label":"Sets","values":["1 Set","2 Sets","3 Sets","4 Sets"]}],"3":[{"label":"Hold","values":["5 Seconds","10 Seconds","20 Seconds","30 Seconds","45 Seconds","60 Seconds"]},{"label":"Reps","values":["1 Rep","3 Reps","5 Reps","10 Reps"]},{"label":"Sets","values":["1 Set","2 Sets","3 Sets","4 Sets"]}],"4":[{"label":"Hold","values":["5 Seconds","10 Seconds","20 Seconds","30 Seconds","45 Seconds","60 Seconds"]},{"label":"Reps","values":["1 Rep","3 Reps","5 Reps","10 Reps"]},{"label":"Sets","values":["1 Set","2 Sets","3 Sets","4 Sets"]}],"5":[{"label":"Hold","values":["5 Seconds","10 Seconds","20 Seconds","30 Seconds","45 Seconds","60 Seconds"]},{"label":"Reps","values":["1 Rep","3 Reps","5 Reps","10 Reps"]},{"label":"Sets","values":["1 Set","2 Sets","3 Sets","4 Sets"]}],"6":[{"label":"Time","values":["5 Seconds","10 Seconds","20 Seconds","30 Seconds","45 Seconds","60 Seconds","2 Minutes"]},{"label":"Reps","values":["1 Rep","3 Reps","5 Reps","10 Reps"]},{"label":"Sets","values":["1 Set","2 Sets","3 Sets","4 Sets"]}]},"items":["Crunches","Superman/Superwoman","Bridges","Plank","Side Plank","One legged Standing","Cross Crawl Exercises","Postural Stability","Core Strength","Antigravity Extension","Cerebellar Timing","Balance Integration","Motor Endurance","Midline Stability","Gait Preparation","Dynamic Coordination","Strength","Endurance","Coordination","Balance","Motor Planning","Posture","Core Stability","Functional Mobility","Athletic Performance"],"bodymap":false,"clinic":false},{"title":"Biocharger","finding":null,"items":["Brain activation","Happy Days","Abundance","Anxiety support","Aura cleanse","Autism","Bouncing ball 20","Histamine Clam","I have your Back","Integrative gut","Liver support","Lung support","Mitochondrial support"],"bodymap":false,"clinic":true},{"title":"Retained Primitive Reflex (review)","finding":null,"items":[],"bodymap":false,"clinic":false}],
-
-  // --- DIAGRAM ANCHORS: which sections render an inline interactive diagram.
-  //     Key = section index, value = diagram kind. ---
+  sections: [{"title":"Neurosage","finding":null,"grouped":true,"subheads":{"0":"Brain Side","2":"Video Game"},"items":["Left","Right","Fruit Catcher","Forest Journey","Canopy Ascent","Sea Adventure","Hedge Hunt"],"revealSingle":{"label":"Time Played","values":["1 min","2 min","3 min","5 min","10 min","15 min","20 min","25 min","30 min"],"items":[2,3,4,5,6]},"bodymap":false,"clinic":true},{"title":"Ear Placement","finding":null,"items":["Left Ear Shen Men Bead","Right Ear Shen Men Bead"],"bodymap":false,"clinic":false,"noDose":true},{"title":"Smell (Olfactory Training)","finding":null,"grouped":true,"subheads":{"0":"Left Nostril","2":"Right Nostril"},"items":["Frankincense","Lavender","Frankincense","Lavender"],"bodymap":false,"clinic":false},{"title":"Eye Lights / Visual Stimulation","finding":null,"grouped":true,"subheads":{"0":"Blue Light Selection","2":"Eye Light Pattern"},"revealPerItem":{"2":[{"label":"Time","values":["5 Minutes","10 Minutes","15 Minutes","20 Minutes","30 Minutes"]}],"3":[{"label":"Time","values":["5 Minutes","10 Minutes","15 Minutes","20 Minutes","30 Minutes"]}]},"items":["Blue Glasses","Blue Eye Lights","Light flashing outside Left Eye / inside Right Eye","Light flashing outside Right Eye / inside Left Eye"],"bodymap":false,"clinic":true},{"title":"Pen Light Stimulation","finding":null,"grouped":true,"revealPerItem":{"0":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes"]}],"1":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes"]}]},"items":["Shine pen light outside Right Eye","Shine pen light outside Left Eye"],"bodymap":false,"clinic":true},{"title":"Face Stimulation","finding":null,"items":[],"clinic":true,"facemap":true,"facemap_devices":["SaeboStimpod"],"rezzimax_lr":true},{"title":"Tongue Stimulation","finding":null,"items":[],"clinic":true,"customWidget":"tongue"},{"title":"Stimpod Placement (Body)","finding":null,"items":[],"clinic":true,"stimdose":true},{"title":"Red / Infrared Laser Therapy","finding":null,"grouped":true,"subheads":{"0":"Laser Type","2":"Body Placement Selections"},"cols":{"2":2},"revealPerItem":{"2":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"3":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"4":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"5":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"6":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"7":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"8":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"9":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"10":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"11":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"12":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"13":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"14":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"15":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}]},"diagramTimeDropdown":{"label":"Diagram Duration","values":["30 Seconds","45 Seconds","1 Minute","2 Minutes","3 Minutes","5 Minutes"]},"items":["Red","Infrared","Vagus (L / R)","Carotid","Cerebellum (L / R)","Stomach","Liver","Spinal Pathways","Dr. Daigle Face","528 in nose (L / R)","Left Hand","Right Hand","Left Foot","Right Foot","Open Mouth","Under neck/chin"],"clinic":true,"brainmap":true},{"title":"Green Laser Therapy","finding":null,"grouped":true,"subheads":{"0":"Placement Selection"},"cols":{"0":2},"revealPerItem":{"0":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"1":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"2":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"3":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"4":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"5":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"6":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"7":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"8":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}],"9":[{"label":"Time","values":["30 Seconds","1 Minute","1.5 Minutes","2 Minutes","3 Minutes","5 Minutes","8 Minutes","10 Minutes"]}]},"diagramTimeDropdown":{"label":"Diagram Duration","values":["30 Seconds","45 Seconds","1 Minute","2 Minutes","3 Minutes","5 Minutes"]},"items":["Vagus (L / R)","Carotid","Cerebellum (L / R)","Stomach","Liver","Spinal Pathways","Dr. Daigle Face","528 in nose (L / R)","Open Mouth","Tongue"],"clinic":true,"brainmap":true},{"title":"Light Panel Therapy","finding":null,"grouped":true,"subheads":{"0":"HZ Selection","8":"Preset Selection","9":"Treatment Mode"},"cols":{"0":2,"9":2},"revealPerItem":{"0":[{"label":"Time","values":["2 Minutes","5 Minutes","10 Minutes","15 Minutes","20 Minutes","30 Minutes"]}],"1":[{"label":"Time","values":["2 Minutes","5 Minutes","10 Minutes","15 Minutes","20 Minutes","30 Minutes"]}],"2":[{"label":"Time","values":["2 Minutes","5 Minutes","10 Minutes","15 Minutes","20 Minutes","30 Minutes"]}],"3":[{"label":"Time","values":["2 Minutes","5 Minutes","10 Minutes","15 Minutes","20 Minutes","30 Minutes"]}],"4":[{"label":"Time","values":["2 Minutes","5 Minutes","10 Minutes","15 Minutes","20 Minutes","30 Minutes"]}],"5":[{"label":"Time","values":["2 Minutes","5 Minutes","10 Minutes","15 Minutes","20 Minutes","30 Minutes"]}],"6":[{"label":"Time","values":["2 Minutes","5 Minutes","10 Minutes","15 Minutes","20 Minutes","30 Minutes"]}],"7":[{"label":"Time","values":["2 Minutes","5 Minutes","10 Minutes","15 Minutes","20 Minutes","30 Minutes"]}]},"items":["4 hz","6 hz","8 hz","10 hz","20 hz","30 hz","31 hz","40 hz","Custom Settings","Blood Flow","Regulation","Recovery","Abdomen","Back Area","Sleep / Calm","Inflammation","Discomfort"],"bodymap":false,"clinic":true},{"title":"Music Therapy","finding":null,"grouped":true,"subheads":{"0":"Music Selection"},"revealPerItem":{"0":[{"label":"Time","values":["1 Minute","2 Minutes","5 Minutes","8 Minutes","10 Minutes","15 Minutes","20 Minutes"]}],"1":[{"label":"Time","values":["1 Minute","2 Minutes","5 Minutes","8 Minutes","10 Minutes","15 Minutes","20 Minutes"]}],"2":[{"label":"Time","values":["1 Minute","2 Minutes","5 Minutes","8 Minutes","10 Minutes","15 Minutes","20 Minutes"]}],"3":[{"label":"Time","values":["1 Minute","2 Minutes","5 Minutes","8 Minutes","10 Minutes","15 Minutes","20 Minutes"]}],"4":[{"label":"Time","values":["1 Minute","2 Minutes","5 Minutes","8 Minutes","10 Minutes","15 Minutes","20 Minutes"]}],"5":[{"label":"Time","values":["1 Minute","2 Minutes","5 Minutes","8 Minutes","10 Minutes","15 Minutes","20 Minutes"]}],"6":[{"label":"Time","values":["1 Minute","2 Minutes","5 Minutes","8 Minutes","10 Minutes","15 Minutes","20 Minutes"]}]},"items":["Theta","Alpha","Gamma","Jazzy","Classical","Metronome Left Ear","Metronome Right ear"],"bodymap":false,"clinic":false},{"title":"Rooting Reflex","finding":"Rooting Reflex: Left Face: ______________       Right Face: ________________","items":["Laser cerebellum on same side and vibrate from ear to the corner of mouth.","Rezzimax the lips","Focusing on corner of lips (left) (right) bilaterally","Deep pressure in circular fashion on the face","Laser Dr. Daigle All on face","Perform Facial contractions(wink eye)","Peppermint Oil on Roof of mouth"],"bodymap":false,"clinic":false,"revealDropdowns":{"reps":["1 Rep","2 Reps","3 Reps","5 Reps","10 Reps","15 Reps","20 Reps"],"sets":["1 Set","2 Sets","3 Sets","4 Sets"]}},{"title":"Moro Reflex","finding":null,"grouped":true,"subheads":{"1":"Metronome App"},"items":["Starfish exercise","35 bpm","45 bpm","60 bpm","Left ear","Right ear"],"bodymap":false,"clinic":false},{"title":"Palmar Reflex","finding":"Palmar Reflex Left Hand: ______________       Right Hand: ________________","grouped":true,"subheads":{"13":"AVACEN Rag","15":"Robotic Glove","17":"Warm Rag","19":"Cold/Ice"},"items":["Laser cerebellum on same side and vibrate hand","Laser cerebellum on same side and Stimpod Heart 7 and Hand","Saebo Pads on the Heart 7 point and in Palm of Hand","Wheel barrow exercise","Donkey Kicks","Press down on the ground with both hands","Monkey Bars","Vibeplate with Blaze Pods","Firm pressure on the hands","Pull each finger","Figure 8’s with each finger","Laser Dr. Daigle All on hand for 30 seconds-1 minute","Saebo Microcurrent glove (make sure to put lotion)","Left Hand","Right Hand","Left Hand","Right Hand","Left Hand","Right Hand","Left Hand","Right Hand"],"bodymap":false,"clinic":false},{"title":"Babinski Reflex","finding":"Babinski Reflex           Left Foot: ______________       Right Foot: ________________","grouped":true,"subheads":{"10":"Warm Rag","12":"Cold/Ice","14":"Saebo Foot Spa: Red Lead on"},"items":["Laser cerebellum on same side and vibrate foot (vibrate down St 36 to top of foot)","Laser cerebellum on same side and Stimpod ST 36, SP 6, bottom of foot","Saebo Pads on the ST 36 and (Bottom of Foot heel) (Kidney 1)","Jumping up and down","Press down on the top of foot with both feet on the ground on Vibeplate","Firm pressure on the bottom of feet","Pull each toe","Figure 8’s with each toe","Laser Dr. Daigle All on foot for 30 seconds-1 minute","Floor is Lava","Left Foot","Right Foot","Left Foot","Right Foot","Left Foot","Right Foot"],"bodymap":false,"clinic":false},{"title":"Spinal Galant Reflex","finding":"Spinal Galant Left Back: ______________       Right Back: ________________","grouped":true,"subheads":{"6":"Saebo Pads"},"items":["Laser cerebellum on same side and vibrate up and down spine","Laser cerebellum on same side and run stimpod up and down spine","Snow Angels 25 reps","Inch Worms","Fish","Laser Spinal Pathways on IR for 2 minutes Red for 2-3 minutes","Left lower back","Right lower back","Left Midback","Right Mid back"],"bodymap":false,"clinic":false},{"title":"ATNR","finding":"ATNR  Left Head Rotation: ______________       Right Head Rotation: ________________","items":["Hands and Knees and laser both cerebellum turn head left and rock","Hands and Knees and laser both cerebellum turn head right and rock","Lizard exercise Right elbow to right knee with head turned left","Lizard exercise Left elbow to left knee with head turned right","Hands and Knees and turn head to the left and move right arm to point across body","Hands and Knees and turn head to the right and move left arm to point across body","Crawling forward on the ground","Crawling with Blaze Pods (forward and backward)","Quadruped with animals and head light laser","Quadruped on Flexion/Extension Table"],"bodymap":false,"clinic":false,"revealDropdowns":{"reps":["1 Rep","2 Reps","3 Reps","5 Reps","10 Reps","15 Reps","20 Reps"],"sets":["1 Set","2 Sets","3 Sets","4 Sets"]}},{"title":"Cross Crawl","finding":null,"items":["Right elbow to left knee and left elbow to right knee"],"bodymap":false,"clinic":false,"revealDropdowns":{"reps":["1 Rep","2 Reps","3 Reps","5 Reps","10 Reps","15 Reps","20 Reps"],"sets":["1 Set","2 Sets","3 Sets","4 Sets"]}},{"title":"STNR","finding":null,"items":["Cat Stretch: Hands and knees and look up with neck","Flexion/Extension Table","Laser both cerebellums while Hands and knees and move head up to ceiling and bring down to chest"],"bodymap":false,"clinic":false,"revealDropdowns":{"reps":["1 Rep","2 Reps","3 Reps","5 Reps","10 Reps","15 Reps","20 Reps"],"sets":["1 Set","2 Sets","3 Sets","4 Sets"]}},{"title":"TLR","finding":null,"items":["Standing with both feet together and laser cerebellum bring head up to the ceiling and down to chest","Cannon balls","Flexion/Extension Table","On back with knees tucked and tilt to the left and right"],"bodymap":false,"clinic":false,"revealDropdowns":{"reps":["1 Rep","2 Reps","3 Reps","5 Reps","10 Reps","15 Reps","20 Reps"],"sets":["1 Set","2 Sets","3 Sets","4 Sets"]}},{"title":"Posture Reflexes","finding":"Rolling to the Left  ____ times               Rolling to the right ____ times","items":["visual stimulus","music","smells","Hands pulling","On stomach and work on lifting head up","Turtle pose: elbows bent hands firmly on ground and head up","Lion pose: Knees tucked, lift chest up, arms extended and hands firm on ground","Pediatric incline Mat working on getting into quad position, extending arms","Pediatric incline mat with looking into mirror while holding head up","Medicine ball sitting and slide side to side, forward and backward","Place on stomach Medicine ball and Rolling Forward and Backward","Place on Stomach Medicine ball and Rolling side to side","Sitting on medicine ball and pushing forward and backward","Place on back and roll forward and backward, side to side","Super mans","Landau: keeping feet on the ground and lifting arms up","Crab walk","Frog jump","Laying on back and pulling across body to Roll","Side lying with rotation with sensory stimulation to SCM/Upper Trap region"],"bodymap":false,"clinic":false,"revealDropdowns":{"reps":["1 Rep","2 Reps","3 Reps","5 Reps","10 Reps","15 Reps","20 Reps"],"sets":["1 Set","2 Sets","3 Sets","4 Sets"]}},{"title":"Core Exercise","finding":null,"items":["Sit ups for 1 minute (may have to assist)","Bridges for 1 minute","Planks","Side planks","Bridge with single leg","Bird dog (single arm) (single leg) (left arm/right leg) (right arm/left leg)","Hanging from pull up bar","Pull ups on the bar","Push ups","Squats","Lunges","Tall Knee","Tall Knee with lunge","Wall Squats","Butt walks","Parallel Bars","Climbing"],"bodymap":false,"clinic":false,"revealDropdowns":{"reps":["1 Rep","2 Reps","3 Reps","5 Reps","10 Reps","15 Reps","20 Reps"],"sets":["1 Set","2 Sets","3 Sets","4 Sets"]}},{"title":"Posture Exercises","finding":null,"items":["Spider Cage","YTA","Bring Shoulders Back (rows)","Knee Extension","Lift foot off the ground while standing","External rotation of Shoulders","Hip Abduction","Reverse Fly’s","Tricep Extension","Levator Stretch","Hamstring Stretch","Medicine Ball rotation","Piriformis Stretch","Bicep Stretch"],"bodymap":false,"clinic":false,"revealDropdowns":{"reps":["1 Rep","2 Reps","3 Reps","5 Reps","10 Reps","15 Reps","20 Reps"],"sets":["1 Set","2 Sets","3 Sets","4 Sets"]}},{"title":"Balance Exercises","finding":null,"items":["Feet together and move head up and down","Stand on one leg balancing","Stand with one foot in front of the other (tandem Romberg)","Balance Beam (say alphabet / numbers while walking)","Walk with one foot in front of the other","Figure 8’s (Left arm/Leg · Right arm/Leg)","Standing on Bosu ball with flat surface down","Standing on Bosu ball with flat surface up","Standing on theraband pad","Standing on Wobble board","Balance Tracker  (progress in this order)","Front/Back","Left/Right","Diagonal","Random","Modified","Cervical Challenge","Motion Guided seated/Quad","Sit to stands","Sit to stand with dizzy stick","Tall knee with resistance","Tall knee with lunges","Lunge to standing","Parallel Bars for balancing on one leg","Parallel bars for walking"],"bodymap":false,"clinic":false,"revealDropdowns":{"reps":["1 Rep","2 Reps","3 Reps","5 Reps","10 Reps","15 Reps","20 Reps"],"sets":["1 Set","2 Sets","3 Sets","4 Sets"]}},{"title":"Vestibular","finding":null,"items":["Otolith","Move head quickly to the left 10x","Move head quickly to the right 10x","Jumping up and down 1 minute","Using blue swing and swing back and forth","Head tilt: 5 / 10 / 20 reps · 2–3 sets","Tilt head to the left","Tilt head to the right","Tilt head back into extension","Cervical Stabilization"],"bodymap":false,"clinic":false,"revealDropdowns":{"reps":["1 Rep","2 Reps","3 Reps","5 Reps","10 Reps","15 Reps","20 Reps"],"sets":["1 Set","2 Sets","3 Sets","4 Sets"]}},{"title":"VOR Reflex","finding":null,"items":["Quickly turn head to the Left (eyes should go to the right)","Quickly turn head to the Right (eyes should go to the left)","Have patient stare at object while slowly turning head to the right","Have patient stare at object while slowly turning head to the left"],"bodymap":false,"clinic":false,"revealDropdowns":{"reps":["1 Rep","2 Reps","3 Reps","5 Reps","10 Reps","15 Reps","20 Reps"],"sets":["1 Set","2 Sets","3 Sets","4 Sets"]}},{"title":"Gaze Stabilization Head Movements","finding":null,"items":["No-No's","Yes-Yes","Tilt Left","Tilt Right"],"itemDesc":{"0":"Horizontal head turns while maintaining visual fixation","1":"Vertical head movements while maintaining visual fixation","2":"Head tilt to the left while maintaining visual fixation","3":"Head tilt to the right while maintaining visual fixation"},"revealDropdowns":{"reps":["1 Rep","3 Reps","5 Reps","10 Reps"],"sets":["1 Set","2 Sets","3 Sets","4 Sets"]},"bodymap":false,"clinic":false},{"title":"Hemisphere Work","finding":null,"items":["Slow spin to the left (6 sec) 10x","Slow spin to the right (6 sec) 10x","Fast spin to the right (2 sec) 10x","Fast spin to the left (2sec) 10x","Laser Vagus and Cerebellum","Oxygen","CES clips","Up and Down","Left and Right","Butterfly","Upper Left Butterfly","Upper Right Butterfly","Lower Left Butterfly","Lower Right"],"bodymap":false,"clinic":false,"revealDropdowns":{"reps":["1 Rep","2 Reps","3 Reps","5 Reps","10 Reps","15 Reps","20 Reps"],"sets":["1 Set","2 Sets","3 Sets","4 Sets"]}},{"title":"Eyes (Oculomotor)","finding":null,"items":["Pencil Push Ups","Cover Left Eye","Cover Right Eye","Bridge position","Lazy 8’s with eyes","Right Brain Saccade: Wiggle Right fingers 10x (eyes ) Wiggle left fingers 3x (eyes)","Left Brain Saccade: Wiggle Left fingers 10x (eyes ) Wiggle Right fingers 3x (eyes)"],"bodymap":false,"clinic":false,"revealDropdowns":{"reps":["1 Rep","2 Reps","3 Reps","5 Reps","10 Reps","15 Reps","20 Reps"],"sets":["1 Set","2 Sets","3 Sets","4 Sets"]}},{"title":"Vision","finding":null,"items":["Dynamic Vision","Intensive Eye Games (Level 1 / 2 / 3)","Trigeminal Stimulation","Laser Cerebellums","Laser Parietal","PEMF head","OptoDrum: Animals","OptoDrum: Lines","Optodrum eyes going upward","Optodrum eyes downward","Optodrum eyes going horizontally Left","Optodrum eyes horizon right","Optodrum eyes going up right","Optodrum eyes going up Left"],"bodymap":false,"clinic":true,"revealDropdowns":{"reps":["1 Rep","2 Reps","3 Reps","5 Reps","10 Reps","15 Reps","20 Reps"],"sets":["1 Set","2 Sets","3 Sets","4 Sets"]}},{"title":"Eye Movements","finding":null,"grouped":true,"subheads":{"1":"Right Brain Pursuits","6":"Left Brain Pursuits","11":"Right Brain Saccadic Eye Movements","13":"Left Brain Saccadic Eye Movements"},"revealDropdowns":{"reps":["1 Rep","2 Reps","3 Reps","5 Reps"],"sets":["1 Set","2 Sets","3 Sets","4 Sets"]},"items":["Fixation","Horizontally to the Right","Horizontally Downward","Diagonally Up to the Left","Diagonally Down to the Right","Diagonally Down to the Right → Up to the Left","Midline Up","Midline to the Left","Diagonally Up to the Right","Diagonally Down to the Left","Diagonally Down to the Left → Up to the Right","Midline to the Left","Midline Down","Midline to the Right","Midline Up"],"bodymap":false,"clinic":false},{"title":"Coordination, Timing & Cerebellar Integration","finding":null,"grouped":true,"revealPerItem":{"0":[{"label":"Reps","values":["1 Rep","3 Reps","5 Reps","10 Reps"]},{"label":"Sets","values":["1 Set","2 Sets","3 Sets","4 Sets"]}],"1":[{"label":"Reps","values":["1 Rep","3 Reps","5 Reps","10 Reps"]},{"label":"Sets","values":["1 Set","2 Sets","3 Sets","4 Sets"]}],"2":[{"label":"Time","values":["5 Seconds","10 Seconds","20 Seconds","30 Seconds","45 Seconds","1 Minute","2 Minutes"]},{"label":"Sets","values":["1 Set","2 Sets","3 Sets","4 Sets"]}],"3":[{"label":"Time","values":["5 Seconds","10 Seconds","20 Seconds","30 Seconds","45 Seconds","1 Minute","2 Minutes"]},{"label":"Sets","values":["1 Set","2 Sets","3 Sets","4 Sets"]}],"4":[{"label":"Time","values":["5 Seconds","10 Seconds","20 Seconds","30 Seconds","45 Seconds","1 Minute","2 Minutes"]},{"label":"Sets","values":["1 Set","2 Sets","3 Sets","4 Sets"]}],"5":[{"label":"Reps","values":["1 Rep","3 Reps","5 Reps","10 Reps","15 Reps","20 Reps","30 Reps"]},{"label":"Sets","values":["1 Set","2 Sets","3 Sets","4 Sets"]}]},"subheads":{"6":"Areas of Focus","16":"Performance Observations"},"items":["Finger Nose Dot","Finger Nose Finger","Metronome Finger Tap","Metronome Hand Clap","Metronome Foot Tap","Ball Toss","Cerebellar Timing","Motor Planning","Bilateral Coordination","Hand-Eye Coordination","Motor Accuracy","Rhythm & Timing","Fine Motor Control","Gross Motor Control","Reaction Time","Sensorimotor Integration","Improved Accuracy","Improved Speed","Improved Coordination","Improved Rhythm","Improved Bilateral Integration","Difficulty with Timing","Dysmetria Present","Tremor Present","Motor Overflow Present"],"bodymap":false,"clinic":false},{"title":"Spinocerebellar Exercises","finding":null,"grouped":true,"subheads":{"7":"Spinocerebellar Goals","16":"Areas Demonstrating Improvement"},"revealPerItem":{"0":[{"label":"Reps","values":["1 Rep","3 Reps","5 Reps","10 Reps","15 Reps","20 Reps"]},{"label":"Sets","values":["1 Set","2 Sets","3 Sets","4 Sets"]}],"1":[{"label":"Hold","values":["5 Seconds","10 Seconds","20 Seconds","30 Seconds","45 Seconds","60 Seconds"]},{"label":"Reps","values":["1 Rep","3 Reps","5 Reps","10 Reps"]},{"label":"Sets","values":["1 Set","2 Sets","3 Sets","4 Sets"]}],"2":[{"label":"Hold","values":["5 Seconds","10 Seconds","20 Seconds","30 Seconds","45 Seconds","60 Seconds"]},{"label":"Reps","values":["1 Rep","3 Reps","5 Reps","10 Reps"]},{"label":"Sets","values":["1 Set","2 Sets","3 Sets","4 Sets"]}],"3":[{"label":"Hold","values":["5 Seconds","10 Seconds","20 Seconds","30 Seconds","45 Seconds","60 Seconds"]},{"label":"Reps","values":["1 Rep","3 Reps","5 Reps","10 Reps"]},{"label":"Sets","values":["1 Set","2 Sets","3 Sets","4 Sets"]}],"4":[{"label":"Hold","values":["5 Seconds","10 Seconds","20 Seconds","30 Seconds","45 Seconds","60 Seconds"]},{"label":"Reps","values":["1 Rep","3 Reps","5 Reps","10 Reps"]},{"label":"Sets","values":["1 Set","2 Sets","3 Sets","4 Sets"]}],"5":[{"label":"Hold","values":["5 Seconds","10 Seconds","20 Seconds","30 Seconds","45 Seconds","60 Seconds"]},{"label":"Reps","values":["1 Rep","3 Reps","5 Reps","10 Reps"]},{"label":"Sets","values":["1 Set","2 Sets","3 Sets","4 Sets"]}],"6":[{"label":"Time","values":["5 Seconds","10 Seconds","20 Seconds","30 Seconds","45 Seconds","60 Seconds","2 Minutes"]},{"label":"Reps","values":["1 Rep","3 Reps","5 Reps","10 Reps"]},{"label":"Sets","values":["1 Set","2 Sets","3 Sets","4 Sets"]}]},"items":["Crunches","Superman/Superwoman","Bridges","Plank","Side Plank","One legged Standing","Cross Crawl Exercises","Postural Stability","Core Strength","Antigravity Extension","Cerebellar Timing","Balance Integration","Motor Endurance","Midline Stability","Gait Preparation","Dynamic Coordination","Strength","Endurance","Coordination","Balance","Motor Planning","Posture","Core Stability","Functional Mobility","Athletic Performance"],"bodymap":false,"clinic":false},{"title":"Retained Primitive Reflex (review)","finding":null,"items":[],"bodymap":false,"clinic":false}],
   diagramAnchors: {"5": "facemap","7": "stimdose","8": "brain","9": "brain"},
-
-  // --- DOSAGE PRESETS: reusable reps/sets/time/hold option lists. ---
   dosagePresets: {
   reps_std:["1","3","5","10"],
   reps_eye:["1","2","3","5"],
@@ -286,24 +301,18 @@ const WORKSHEET = {
   hold_std:["5s","10s","20s","30s","45s","60s"],
   hold_fix:["5s","10s","15s","20s"]
 },
-
-  // --- DOSAGE RULES: which sections get a reps/sets/time row (key=section index).
-  //     itemOverrides keys are item indices within that section. ---
   dosageRules: {
 },
-
-  // --- DIAGRAM GEOMETRY (rarely edited): SVG coordinates for the maps. ---
   brainSites: {'Fpz':[180,45],'Fz':[180,112],'Cz':[180,180],'Pz':[180,248],'Oz':[180,315],'Fp1':[135,52],'Fp2':[225,52],'F7':[72,105],'F3':[120,112],'F4':[240,112],'F8':[288,105],'T3':[45,180],'C3':[112,180],'C4':[248,180],'T4':[315,180],'T5':[72,255],'P3':[120,248],'P4':[240,248],'T6':[288,255],'O1':[135,308],'O2':[225,308],'A1':[27,180],'A2':[333,180]},
   brainBands: [{name:'Theta',hz:'4–8',color:'#6C4CF0'},{name:'Alpha',hz:'8–12',color:'#2D6FD9'},{name:'Beta',hz:'12–30',color:'#0DAD82'},{name:'Gamma',hz:'30–100',color:'#E8960C'},{name:'528',hz:'528Hz',color:'#E36488'}],
   bodyDevices: [{name:'Laser',color:'#E36488'},{name:'Saebo',color:'#0DAD82'},{name:'Stimpod',color:'#2D6FD9'},{name:'InterX',color:'#E8960C'}],
   bodyZones: [{"id": "face_v1", "label": "Face V1 (forehead)", "view": "front", "side": "C", "cx": 60, "cy": 46, "rx": 16, "ry": 9}, {"id": "face_v2", "label": "Face V2 (cheek)", "view": "front", "side": "C", "cx": 60, "cy": 58, "rx": 18, "ry": 7}, {"id": "face_v3", "label": "Face V3 (jaw)", "view": "front", "side": "C", "cx": 60, "cy": 68, "rx": 16, "ry": 6}, {"id": "trigeminal", "label": "Trigeminal", "view": "front", "side": "C", "cx": 60, "cy": 54, "rx": 20, "ry": 14}, {"id": "ear_l", "label": "Ear L", "view": "front", "side": "L", "cx": 42, "cy": 56, "rx": 6, "ry": 8}, {"id": "ear_r", "label": "Ear R", "view": "front", "side": "R", "cx": 78, "cy": 56, "rx": 6, "ry": 8}, {"id": "tongue", "label": "Tongue (L/Mid/R)", "view": "front", "side": "C", "cx": 60, "cy": 64, "rx": 8, "ry": 5}, {"id": "vagus_l", "label": "Vagus / Carotid L", "view": "front", "side": "L", "cx": 52, "cy": 82, "rx": 7, "ry": 9}, {"id": "vagus_r", "label": "Vagus / Carotid R", "view": "front", "side": "R", "cx": 68, "cy": 82, "rx": 7, "ry": 9}, {"id": "scm_l", "label": "SCM L", "view": "front", "side": "L", "cx": 50, "cy": 88, "rx": 6, "ry": 10}, {"id": "scm_r", "label": "SCM R", "view": "front", "side": "R", "cx": 70, "cy": 88, "rx": 6, "ry": 10}, {"id": "utrap_l", "label": "Upper Trap L", "view": "front", "side": "L", "cx": 40, "cy": 96, "rx": 10, "ry": 7}, {"id": "utrap_r", "label": "Upper Trap R", "view": "front", "side": "R", "cx": 80, "cy": 96, "rx": 10, "ry": 7}, {"id": "stomach", "label": "Stomach", "view": "front", "side": "C", "cx": 60, "cy": 130, "rx": 14, "ry": 12}, {"id": "liver", "label": "Liver", "view": "front", "side": "R", "cx": 72, "cy": 124, "rx": 12, "ry": 10}, {"id": "ht7_l", "label": "HT7 (wrist) L", "view": "front", "side": "L", "cx": 24, "cy": 176, "rx": 7, "ry": 8}, {"id": "ht7_r", "label": "HT7 (wrist) R", "view": "front", "side": "R", "cx": 96, "cy": 176, "rx": 7, "ry": 8}, {"id": "hand_l", "label": "Hand L", "view": "front", "side": "L", "cx": 20, "cy": 196, "rx": 9, "ry": 10}, {"id": "hand_r", "label": "Hand R", "view": "front", "side": "R", "cx": 100, "cy": 196, "rx": 9, "ry": 10}, {"id": "st36_l", "label": "ST36 L", "view": "front", "side": "L", "cx": 48, "cy": 250, "rx": 8, "ry": 10}, {"id": "st36_r", "label": "ST36 R", "view": "front", "side": "R", "cx": 72, "cy": 250, "rx": 8, "ry": 10}, {"id": "sp6_l", "label": "SP6 L", "view": "front", "side": "L", "cx": 50, "cy": 278, "rx": 7, "ry": 9}, {"id": "sp6_r", "label": "SP6 R", "view": "front", "side": "R", "cx": 70, "cy": 278, "rx": 7, "ry": 9}, {"id": "foot_l", "label": "Foot / Toes / KID1 L", "view": "front", "side": "L", "cx": 48, "cy": 312, "rx": 9, "ry": 8}, {"id": "foot_r", "label": "Foot / Toes / KID1 R", "view": "front", "side": "R", "cx": 72, "cy": 312, "rx": 9, "ry": 8}, {"id": "occiput", "label": "Occiput", "view": "back", "side": "C", "cx": 60, "cy": 40, "rx": 16, "ry": 10}, {"id": "cereb_l", "label": "Cerebellum L", "view": "back", "side": "L", "cx": 52, "cy": 50, "rx": 9, "ry": 8}, {"id": "cereb_r", "label": "Cerebellum R", "view": "back", "side": "R", "cx": 68, "cy": 50, "rx": 9, "ry": 8}, {"id": "parietal", "label": "Parietal", "view": "back", "side": "C", "cx": 60, "cy": 30, "rx": 14, "ry": 8}, {"id": "trap_back_l", "label": "Upper Trap L (post)", "view": "back", "side": "L", "cx": 44, "cy": 92, "rx": 10, "ry": 8}, {"id": "trap_back_r", "label": "Upper Trap R (post)", "view": "back", "side": "R", "cx": 76, "cy": 92, "rx": 10, "ry": 8}, {"id": "midback_l", "label": "Mid Back L", "view": "back", "side": "L", "cx": 50, "cy": 120, "rx": 10, "ry": 12}, {"id": "midback_r", "label": "Mid Back R", "view": "back", "side": "R", "cx": 70, "cy": 120, "rx": 10, "ry": 12}, {"id": "spine", "label": "Spine / Spinal Pathways", "view": "back", "side": "C", "cx": 60, "cy": 130, "rx": 7, "ry": 40}, {"id": "lowback_l", "label": "Low Back L", "view": "back", "side": "L", "cx": 50, "cy": 160, "rx": 10, "ry": 10}, {"id": "lowback_r", "label": "Low Back R", "view": "back", "side": "R", "cx": 70, "cy": 160, "rx": 10, "ry": 10}],
-  facePoints: [ // clickable points on face/ear (label, x, y)
+  facePoints: [
  ['Forehead L',74,70],['Forehead R',106,70],['Temple L',58,86],['Temple R',122,86],
  ['Cheek L',68,108],['Cheek R',112,108],['Jaw L',70,134],['Jaw R',110,134],
  ['Ear L',48,100],['Ear R',132,100],['Chin',90,150],['Lip',90,128]]
 };
 
-/* ---- Aliases: keep existing logic code working unchanged. Do not edit. ---- */
 const MODEL = WORKSHEET.sections;
 const ANCHORS = WORKSHEET.diagramAnchors;
 const DOSE_PRESETS = WORKSHEET.dosagePresets;
@@ -325,7 +334,7 @@ MODEL.forEach((sec,si)=>{
   const card=document.createElement('section');card.className='sec';card.id='sec'+si;
   const hasDose=!!DOSAGE[si];
   let h='<div class="sec-head"><span class="sec-num">'+String(si+1).padStart(2,'0')+'</span><span class="sec-title">'+sec.title+'</span>'+
-    (sec.clinic?'<span class="sec-tag clinic">Clinic</span>':'')+(ANCHORS[si]?'<span class="sec-tag dia">Diagram</span>':'')+
+    (ANCHORS[si]?'<span class="sec-tag dia">Diagram</span>':'')+
     (hasDose?'<span class="sec-tag dose">Dose</span>':'')+
     '<span class="sec-count" id="cnt'+si+'">0/'+sec.items.length+'</span></div>';
   if(sec.finding)h+='<div class="finding"><div class="finding-lab">Finding · grade L / R</div><div class="f">Left <input data-f="'+si+'-L"></div><div class="f">Right <input data-f="'+si+'-R"></div></div>';
@@ -370,7 +379,7 @@ MODEL.forEach((sec,si)=>{
           r+='<div class="revealdd" data-rd="'+si+'-'+j+'">';
           r+='<span class="rddlab">'+sec.revealSingle.label.replace(/</g,'&lt;')+'</span><select class="rddsel" data-si="'+si+'" data-i="'+j+'" data-k="single"><option value="">—</option>'+sec.revealSingle.values.map(v=>'<option value="'+v.replace(/"/g,'&quot;')+'">'+v.replace(/</g,'&lt;')+'</option>').join('')+'</select>';
           r+='</div>';
-        } else if(!sec.grouped){
+        } else if(!sec.grouped&&!sec.noDose){
           r+='<input class="dosef" data-d="'+si+'-'+j+'" placeholder="dose / time (e.g. R=10 L=5 · 3 min)" />';
         }
         r+='</div>';
@@ -403,7 +412,6 @@ MODEL.forEach((sec,si)=>{
     return r;
   }
   function renderSideBySide(){
-    // each subgroup (defined by subheads) becomes a column block: subheader + vertical item list
     let r='<div class="sbs" style="grid-template-columns:repeat('+subStarts.length+',1fr)">';
     subStarts.forEach((start,k)=>{
       const end = (k+1<subStarts.length) ? subStarts[k+1] : sec.items.length;
@@ -429,6 +437,7 @@ MODEL.forEach((sec,si)=>{
   h+='<div class="notes"><label>Section notes</label><textarea data-n="'+si+'"></textarea></div>';
   card.innerHTML=h;secEl.appendChild(card);
   const a=document.createElement('a');a.href='#sec'+si;a.id='rail'+si;
+  a.addEventListener('click',e=>{e.preventDefault();const card=document.getElementById('sec'+si);if(card){card.scrollIntoView({behavior:'smooth',block:'start'});document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));card.classList.add('active');document.querySelectorAll('.rail a').forEach(x=>x.classList.remove('active'));a.classList.add('active');}});
   a.innerHTML='<span class="tick">'+(si+1)+'</span><span>'+sec.title+'</span>'+(ANCHORS[si]?'<span class="dia">◳</span>':'')+(hasDose?'<span class="dos">Rx</span>':'');
   railnav.appendChild(a);
 });
@@ -469,15 +478,12 @@ function renderDiagram(si,kind){
       sdcheck(k,'L')+sdc(k,'Lt')+sdcheck(k,'R')+sdc(k,'Rt')+'</tr>';});
     th+='</tbody></table>';
     box.innerHTML=th;
-    // time dropdowns (per side)
     box.querySelectorAll('select.tin').forEach(inp=>inp.onchange=()=>{stimTable[si][inp.dataset.k]=stimTable[si][inp.dataset.k]||{};stimTable[si][inp.dataset.k][inp.dataset.f]=inp.value;recompute();});
-    // checkbox cells (side treated)
     box.querySelectorAll('.sdbox').forEach(b=>b.onclick=()=>{const k=b.dataset.k,f=b.dataset.f;stimTable[si][k]=stimTable[si][k]||{};stimTable[si][k][f]=!stimTable[si][k][f];b.classList.toggle('on',stimTable[si][k][f]);b.innerHTML=stimTable[si][k][f]?CHECK:'';recompute();});
     return;
   }
 }
 
-/* brain — per-section, MULTI-BAND per site */
 const brainState={};
 function buildBrain(si){let s='<svg viewBox="0 0 360 372" width="360" xmlns="http://www.w3.org/2000/svg"><path d="M168 30 L180 12 L192 30 Z" class="headline"/><circle cx="180" cy="180" r="150" class="headline"/><line x1="180" y1="30" x2="180" y2="330" class="refline"/><line x1="30" y1="180" x2="330" y2="180" class="refline"/><text x="180" y="350" class="axislab">NASION up</text><text x="14" y="184" class="sidelab" transform="rotate(-90 14 184)">LEFT</text><text x="346" y="184" class="sidelab" transform="rotate(90 346 184)">RIGHT</text>';
  for(const[n,[x,y]]of Object.entries(SITES))s+='<g class="node" data-s="'+n+'" transform="translate('+x+','+y+')"><circle r="15" fill="#fff" stroke="rgba(0,0,0,.14)" stroke-width="1.5"/><text>'+n+'</text></g>';
@@ -491,8 +497,7 @@ function renderBrain(si){const st=brainState[si];const svg=document.querySelecto
  if(!e.length)r.innerHTML='<div class="empty">No sites marked.</div>';else{e.sort((a,b)=>a[0].localeCompare(b[0]));r.innerHTML=e.map(([k,arr])=>{const dots=arr.map(bi=>'<span class="dot" style="background:'+BANDS[bi].color+'"></span>').join('');return '<div class="row">'+dots+'<span class="site">'+k+'</span><span class="bn">'+arr.map(bi=>BANDS[bi].name).join(' + ')+'</span><span class="x" onclick="delBrain('+si+',\''+k+'\')">×</span></div>';}).join('');}}
 function delBrain(si,k){delete brainState[si].marks[k];renderBrain(si);recompute();}
 
-/* body — per-section (Violet Laser, Saebo Pads each independent) */
-const bodyState={}; // si -> {dev, marks:{zoneId:devIdx}}
+const bodyState={};
 function bodyPath(){return 'M60 22 q12 0 12 14 q0 10 -4 14 q10 4 10 18 l0 34 q0 8 -6 10 l-2 2 l4 60 q1 8 -6 8 q-6 0 -7 -8 l-5 -44 l-5 44 q-1 8 -7 8 q-7 0 -6 -8 l4 -60 l-2 -2 q-6 -2 -6 -10 l0 -34 q0 -14 10 -18 q-4 -4 -4 -14 q0 -14 12 -14 z';}
 function buildBody(si){let s='<svg viewBox="0 0 280 348" width="360" xmlns="http://www.w3.org/2000/svg">';
  s+='<g transform="translate(20,10)"><text x="60" y="-2" class="bodylab">FRONT</text><path class="bodyoutline" d="'+bodyPath()+'"/>';
@@ -509,7 +514,6 @@ function renderBody(si){const st=bodyState[si];
  recompute();}
 
 
-/* face-map — SaeboStimpod placement points + Rezzimax L/R */
 const faceState2={};
 function faceSVG(){let s='<svg viewBox="0 0 180 200" width="150" xmlns="http://www.w3.org/2000/svg">';
  s+='<path class="headline" d="M90 18 q46 0 46 64 q0 50 -22 76 q-10 12 -24 12 q-14 0 -24 -12 q-22 -26 -22 -76 q0 -64 46 -64 z"/>';
@@ -521,7 +525,6 @@ function faceSVG(){let s='<svg viewBox="0 0 180 200" width="150" xmlns="http://w
  FACE_POINTS.forEach((p,i)=>{s+='<circle class="fpt" data-i="'+i+'" cx="'+p[1]+'" cy="'+p[2]+'" r="9" fill="rgba(13,173,130,0)" stroke="rgba(0,0,0,0)" stroke-width="1.5"/>';});
  s+='</svg>';return s;}
 function buildFaceMap(si){document.getElementById('facemapwrap'+si).innerHTML=faceSVG();
- // checkbox list (drives dots) — two columns: Left | Right, midline spans
  const list=document.getElementById('facelist'+si);
  const isLeft=p=>p[0].endsWith(' L'), isRight=p=>p[0].endsWith(' R');
  const lefts=[],rights=[],mids=[];
@@ -534,13 +537,10 @@ function buildFaceMap(si){document.getElementById('facemapwrap'+si).innerHTML=fa
  if(mids.length)lh+='<div style="margin-top:2px">'+mids.map(rowHTML).join('')+'</div>';
  list.innerHTML=lh;
  list.querySelectorAll('.facerow').forEach(r=>r.onclick=()=>toggleFacePt(si,+r.dataset.i));
- // dots on face also clickable (optional)
  document.querySelectorAll('#facemapwrap'+si+' .fpt').forEach(p=>{p.style.cursor='pointer';p.onclick=()=>toggleFacePt(si,+p.dataset.i);});
- // rezzimax L/R
  const rz=document.getElementById('rez'+si);
  rz.innerHTML='<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">'+['Left','Right'].map(side=>'<div class="rezopt zrow" data-side="'+side+'" style="padding:5px 7px"><span class="zbox"></span><span>'+side+'</span></div>').join('')+'</div>';
  rz.querySelectorAll('.rezopt').forEach(el=>el.onclick=()=>{const st=faceState2[si];const side=el.dataset.side;st.rez=(st.rez===side?null:side);rz.querySelectorAll('.rezopt').forEach(x=>{const on=x.dataset.side===st.rez;const b=x.querySelector('.zbox');if(on){b.style.background='#0DAD82';b.style.borderColor='#0DAD82';b.innerHTML=CHECK;}else{b.style.background='#fff';b.style.borderColor='var(--border-h)';b.innerHTML='';}});recompute();});
- // time-duration pills (single-select) for SaeboStimpod and Rezzimax
  const SAEBO_TIMES=['1 min','2 min','3 min','4 min'];
  const REZ_TIMES=['1 min','2 min','3 min','4 min'];
  buildFaceTime(si,'saebotime'+si,'saeboTime',SAEBO_TIMES);
@@ -554,7 +554,6 @@ function renderFaceMap(si){const st=faceState2[si];
  if(list)list.querySelectorAll('.facerow').forEach(r=>{const on=st.pts.includes(+r.dataset.i);const box=r.querySelector('.zbox');if(on){box.style.background='#0DAD82';box.style.borderColor='#0DAD82';box.innerHTML=CHECK;}else{box.style.background='#fff';box.style.borderColor='var(--border-h)';box.innerHTML='';}});}
 function renderFaceMaps(){for(const si in faceState2)renderFaceMap(si);}
 
-/* tongue — SaeboStimpod main + L/M/R subchecks */
 const tongueState={};
 const stimTable={};
 function sdc(k,f){const vals=['30 Seconds','1 Minute','1.5 Minutes','2 Minutes','3 Minutes','5 Minutes','10 Minutes','15 Minutes'];return '<td><select class="tin sdtime" data-k="'+k+'" data-f="'+f+'"><option value="">time</option>'+vals.map(v=>'<option value="'+v.replace(/"/g,'&quot;')+'">'+v.replace(/</g,'&lt;')+'</option>').join('')+'</select></td>';}
@@ -563,25 +562,19 @@ function buildTongue(si){if(!tongueState[si])tongueState[si]={main:false,sub:{},
  if(st.saeboTime===undefined)st.saeboTime=null;if(st.rezTime===undefined)st.rezTime=null;
  if(st.taste===undefined)st.taste=false;if(st.rezzimax===undefined)st.rezzimax=false;
  let h='';
- // Taste
  h+='<div class="item" id="ttaste'+si+'" style="cursor:pointer"><span class="box">'+CHECK+'</span><span class="lab">Taste</span></div>';
- // Rezzimax + its duration directly underneath
  h+='<div class="item" id="trez'+si+'" style="cursor:pointer"><span class="box">'+CHECK+'</span><span class="lab">Rezzimax</span></div>';
  h+='<div class="facehead" style="margin:6px 0 6px 40px">Rezzimax — Time Duration</div><div id="trezTime'+si+'" style="margin-left:40px"></div>';
- // SaeboStimpod + L/M/R + its duration
  h+='<div class="item" id="tmain'+si+'" style="cursor:pointer;margin-top:10px"><span class="box">'+CHECK+'</span><span class="lab">SaeboStimpod</span></div>';
  h+='<div id="tsub'+si+'" style="margin:4px 0 0 40px;display:flex;gap:8px">';
  ['Left','Middle','Right'].forEach(pos=>{h+='<div class="popt subt" data-pos="'+pos+'" style="margin:0;padding:6px 12px">'+pos+'</div>';});
  h+='</div>';
  h+='<div class="facehead" style="margin:10px 0 6px 40px">Saebo Stim Micro / StimPod — Time Duration</div><div id="tsaebotime'+si+'" style="margin-left:40px"></div>';
  document.getElementById('tonguewidget'+si).innerHTML=h;
- // Taste handler
  const taste=document.getElementById('ttaste'+si);
  taste.onclick=()=>{st.taste=!st.taste;taste.classList.toggle('checked',st.taste);recompute();};
- // Rezzimax handler
  const rez=document.getElementById('trez'+si);
  rez.onclick=()=>{st.rezzimax=!st.rezzimax;rez.classList.toggle('checked',st.rezzimax);recompute();};
- // SaeboStimpod handler
  const main=document.getElementById('tmain'+si);
  main.onclick=()=>{st.main=!st.main;main.classList.toggle('checked',st.main);renderTongue(si);recompute();};
  document.querySelectorAll('#tsub'+si+' .subt').forEach(b=>b.onclick=()=>{const pos=b.dataset.pos;st.sub[pos]=!st.sub[pos];b.classList.toggle('active',st.sub[pos]);if(!st.main){st.main=true;main.classList.add('checked');}renderTongue(si);recompute();});
@@ -593,8 +586,7 @@ function buildTongue(si){if(!tongueState[si])tongueState[si]={main:false,sub:{},
 function renderTongue(si){const st=tongueState[si];const main=document.getElementById('tmain'+si);if(main)main.classList.toggle('checked',st.main);const taste=document.getElementById('ttaste'+si);if(taste)taste.classList.toggle('checked',!!st.taste);const rez=document.getElementById('trez'+si);if(rez)rez.classList.toggle('checked',!!st.rezzimax);}
 function renderTongues(){for(const si in tongueState)renderTongue(si);}
 
-/* ===== SoftWave repeater: dropdown (area) + pulses per row, add/remove ===== */
-const softwaveState={}; // si -> [{area, pulses}, ...]
+const softwaveState={};
 function buildSoftwave(si){
  if(!softwaveState[si])softwaveState[si]=[{area:'',pulses:''}];
  renderSoftwave(si);
@@ -621,8 +613,7 @@ function renderSoftwave(si){
 }
 function softwaveTouched(si){const rows=softwaveState[si];return rows&&rows.some(r=>r.area||(r.pulses&&r.pulses.trim()));}
 
-/* ===== generic Time Duration pill block for plain sections ===== */
-const timePillState={}; // si -> selected value
+const timePillState={};
 function buildTimePills(si){
  const c=document.getElementById('timepills'+si);if(!c)return;
  const vals=MODEL[si].timePills.values;
@@ -631,23 +622,18 @@ function buildTimePills(si){
  c.querySelectorAll('.ftpill').forEach(p=>p.onclick=()=>{const v=p.dataset.v;timePillState[si]=(timePillState[si]===v?null:v);c.querySelectorAll('.ftpill').forEach(x=>x.classList.toggle('active',x.dataset.v===timePillState[si]));recompute();});
 }
 
-/* ===== dosage row interactions ===== */
 function doseKey(si,ii){return si+'-'+ii;}
 secEl.addEventListener('click',e=>{
-  // dosage pill
   const pill=e.target.closest('.dpill');
   if(pill){const si=pill.dataset.s,ii=pill.dataset.i,g=pill.dataset.g,v=pill.dataset.v;const k=doseKey(si,ii);
     state.dosage[k]=state.dosage[k]||{};
     const cur=state.dosage[k][g];
     state.dosage[k][g]=(cur===v?undefined:v);
     if(state.dosage[k][g]===undefined)delete state.dosage[k][g];
-    // reflect active state across this group's pills
     const row=pill.closest('.dgrp');
     row.querySelectorAll('.dpill').forEach(p=>p.classList.toggle('active',p.dataset.g===g&&state.dosage[k][g]===p.dataset.v));
-    // clear the "other" field if a pill was chosen
     if(state.dosage[k][g]!==undefined){const oth=row.querySelector('.dother');if(oth)oth.value='';}
     recompute();return;}
-  // checklist item
   const it=e.target.closest('.item');if(!it||it.id&&it.id.indexOf('tmain')===0)return;if(it.dataset.s===undefined)return;
   const s=it.dataset.s,i=it.dataset.i,k=s+'-'+i;state.checked[k]=!state.checked[k];it.classList.toggle('checked',state.checked[k]);it.closest('.itemwrap').classList.toggle('on',state.checked[k]);recompute();
 });
@@ -668,15 +654,15 @@ function hasDosage(si,ii){const d=state.dosage[doseKey(si,ii)];return d&&Object.
 
 function diagramTouched(si){const k=ANCHORS[si];if(k==='facemap')return faceState2[si]&&(faceState2[si].pts.length>0||faceState2[si].rez||faceState2[si].saeboTime||faceState2[si].rezTime);if(k==='tongue')return tongueState[si]&&(tongueState[si].main||Object.values(tongueState[si].sub).some(Boolean)||tongueState[si].saeboTime||tongueState[si].rezTime);if(k==='stimdose')return stimTable[si]&&Object.values(stimTable[si]).some(r=>r&&(r.L||r.R||r.Lt||r.Rt));if(k==='brain')return brainState[si]&&Object.values(brainState[si].marks).some(a=>a&&a.length);if(k==='body')return bodyState[si]&&Object.keys(bodyState[si].marks).length>0;return false;}
 function tongueTouched(si){const st=tongueState[si];return st&&(st.taste||st.rezzimax||st.main||Object.values(st.sub||{}).some(Boolean)||st.saeboTime||st.rezTime);}
-function recompute(){let done=0,touched=0;MODEL.forEach((sec,si)=>{let c=0;sec.items.forEach((_,ii)=>{if(state.checked[si+'-'+ii])c++});done+=c;document.getElementById('cnt'+si).textContent=c+'/'+sec.items.length;const note=(state.notes[si]||'').trim();const fL=state.findings[si+'-L'],fR=state.findings[si+'-R'];const dia=ANCHORS[si]?diagramTouched(si):false;const cw=sec.customWidget==='tongue'?tongueTouched(si):(sec.customWidget==='softwave'?softwaveTouched(si):false);const tp=sec.timePills&&timePillState[si]?true:false;if(sec.sectionTimeDropdown){const el=document.getElementById('stime'+si);if(el)el.style.display=(c>0)?'flex':'none';}const std=sec.sectionTimeDropdown&&state.reveal[si+'-stime']?true:false;if(sec.diagramTimeDropdown){const el=document.getElementById('dtime'+si);if(el)el.style.display=(c>0||dia)?'flex':'none';}const dtd=sec.diagramTimeDropdown&&state.reveal[si+'-dtime']?true:false;let dosed=false;if(DOSAGE[si])sec.items.forEach((_,ii)=>{if(hasDosage(si,ii))dosed=true;});const t=c>0||note||fL||fR||dia||cw||tp||std||dtd||dosed;if(t)touched++;const ra=document.getElementById('rail'+si);const full=c===sec.items.length&&sec.items.length>0;ra.classList.toggle('done',full);ra.classList.toggle('partial',t&&!full);ra.querySelector('.tick').textContent=full?'✓':(t?'•':(si+1));});
+function recompute(){let done=0,touched=0;MODEL.forEach((sec,si)=>{let c=0;sec.items.forEach((_,ii)=>{if(state.checked[si+'-'+ii])c++});done+=c;document.getElementById('cnt'+si).textContent=c+'/'+sec.items.length;const note=(state.notes[si]||'').trim();const fL=state.findings[si+'-L'],fR=state.findings[si+'-R'];const dia=ANCHORS[si]?diagramTouched(si):false;const cw=sec.customWidget==='tongue'?tongueTouched(si):(sec.customWidget==='softwave'?softwaveTouched(si):false);const tp=sec.timePills&&timePillState[si]?true:false;if(sec.sectionTimeDropdown){const el=document.getElementById('stime'+si);if(el)el.style.display=(c>0)?'flex':'none';}const std=sec.sectionTimeDropdown&&state.reveal[si+'-stime']?true:false;if(sec.diagramTimeDropdown){const el=document.getElementById('dtime'+si);if(el)el.style.display=(c>0||dia)?'flex':'none';}const dtd=sec.diagramTimeDropdown&&state.reveal[si+'-dtime']?true:false;let dosed=false;if(DOSAGE[si])sec.items.forEach((_,ii)=>{if(hasDosage(si,ii))dosed=true;});const ms=msTouched(si);const rv=(typeof reviewTouched==='function'&&document.getElementById('review'+si))?reviewTouched(si):false;const t=c>0||note||fL||fR||dia||cw||tp||std||dtd||dosed||ms||rv;if(t)touched++;const ra=document.getElementById('rail'+si);const full=c===sec.items.length&&sec.items.length>0;ra.classList.toggle('done',full);ra.classList.toggle('partial',t&&!full);ra.querySelector('.tick').textContent=full?'✓':(t?'•':(si+1));});
  document.getElementById('doneCount').textContent=done;document.getElementById('secDone').textContent=touched;
- const pct=Math.round(touched/MODEL.length*100);document.getElementById('railbar').style.width=pct+'%';document.getElementById('railpct').textContent=pct+'% complete';}
+ const pct=Math.round(touched/MODEL.length*100);document.getElementById('railbar').style.width=pct+'%';document.getElementById('railpct').textContent=pct+'% complete';if(typeof renderAllReviews==='function')renderAllReviews();}
 
 const obs=new IntersectionObserver(es=>{es.forEach(en=>{if(en.isIntersecting){const si=en.target.id.replace('sec','');document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));en.target.classList.add('active');document.querySelectorAll('.rail a').forEach(a=>a.classList.remove('active'));const ra=document.getElementById('rail'+si);if(ra){ra.classList.add('active');ra.scrollIntoView({block:'nearest'});}}});},{rootMargin:'-35% 0px -60% 0px'});
 document.querySelectorAll('.sec').forEach(s=>obs.observe(s));
 let t=0;setInterval(()=>{t++;document.getElementById('clock').textContent=String(Math.floor(t/60)).padStart(2,'0')+':'+String(t%60).padStart(2,'0');},1000);
 
-function resetAll(){if(!confirm('Clear everything?'))return;for(const k in state.checked)delete state.checked[k];for(const k in state.findings)delete state.findings[k];for(const k in state.notes)delete state.notes[k];for(const k in state.dose)delete state.dose[k];for(const k in state.dosage)delete state.dosage[k];for(const k in state.reveal)delete state.reveal[k];document.querySelectorAll('.itemwrap.on').forEach(w=>w.classList.remove('on'));document.querySelectorAll('.dpill.active').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.ftpill.active').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.rddsel,select.swsel,.stimesel,.dtimesel,select.tin').forEach(s=>s.selectedIndex=0);document.querySelectorAll('.sectiontime').forEach(el=>el.style.display='none');for(const si in bodyState)bodyState[si].marks={};document.querySelectorAll('.item').forEach(i=>i.classList.remove('checked'));document.querySelectorAll('input,textarea').forEach(i=>i.value='');document.querySelectorAll('.popt').forEach(p=>p.classList.remove('active'));for(const si in brainState)brainState[si].marks={};for(const si in brainState)renderBrain(si);for(const si in bodyState)renderBody(si);for(const si in faceState2)faceState2[si]={pts:[],dev:0,rez:null,saeboTime:null,rezTime:null};for(const si in tongueState)tongueState[si]={main:false,sub:{},saeboTime:null,rezTime:null,taste:false,rezzimax:false};for(const si in softwaveState){softwaveState[si]=[{area:'',pulses:''}];renderSoftwave(+si);}for(const si in timePillState)delete timePillState[si];for(const si in stimTable)stimTable[si]={};renderFaceMaps();renderTongues();recompute();}
+function resetAll(){if(!confirm('Clear everything?'))return;for(const k in state.checked)delete state.checked[k];for(const k in state.findings)delete state.findings[k];for(const k in state.notes)delete state.notes[k];for(const k in state.dose)delete state.dose[k];for(const k in state.dosage)delete state.dosage[k];for(const k in state.reveal)delete state.reveal[k];document.querySelectorAll('.itemwrap.on').forEach(w=>w.classList.remove('on'));document.querySelectorAll('.dpill.active').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.ftpill.active').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.rddsel,select.swsel,.stimesel,.dtimesel,select.tin').forEach(s=>s.selectedIndex=0);document.querySelectorAll('.sectiontime').forEach(el=>el.style.display='none');for(const si in bodyState)bodyState[si].marks={};document.querySelectorAll('.item').forEach(i=>i.classList.remove('checked'));document.querySelectorAll('input,textarea').forEach(i=>i.value='');document.querySelectorAll('.popt').forEach(p=>p.classList.remove('active'));for(const si in brainState)brainState[si].marks={};for(const si in brainState)renderBrain(si);for(const si in bodyState)renderBody(si);for(const si in faceState2)faceState2[si]={pts:[],dev:0,rez:null,saeboTime:null,rezTime:null};for(const si in tongueState)tongueState[si]={main:false,sub:{},saeboTime:null,rezTime:null,taste:false,rezzimax:false};for(const si in softwaveState){softwaveState[si]=[{area:'',pulses:''}];renderSoftwave(+si);}for(const si in timePillState)delete timePillState[si];for(const si in stimTable)stimTable[si]={};for(const si in msState){msState[si]={on:false,mods:{}};var _t=document.getElementById('mstoggle'+si);if(_t)_t.classList.remove('checked');var _b=document.getElementById('msbody'+si);if(_b){_b.style.display='none';_b.innerHTML='';}}for(const si in reviewState){reviewState[si]={manual:{}};}ostate.checks={};ostate.rating={};ostate.radio={};ostate.notes={};ostate.score=null;document.querySelectorAll('#osections .oitem').forEach(it=>{it.classList.remove('checked');var w=it.closest('.itemwrap');if(w)w.classList.remove('on');});document.querySelectorAll('#osections .osel').forEach(s=>s.selectedIndex=0);document.querySelectorAll('#osections textarea').forEach(t=>t.value='');if(typeof orecompute==='function')orecompute();renderFaceMaps();renderTongues();renderAllReviews();recompute();}
 
 function openSummary(){let h='';let any=false;MODEL.forEach((sec,si)=>{const checks=sec.items.filter((_,ii)=>state.checked[si+'-'+ii]);const fL=state.findings[si+'-L'],fR=state.findings[si+'-R'];const note=(state.notes[si]||'').trim();
  let diaLines=[];if(ANCHORS[si]){const k=ANCHORS[si];if(k==='brain'&&brainState[si])diaLines=Object.entries(brainState[si].marks).filter(([,a])=>a&&a.length).map(([s,arr])=>MODEL[si].title+' '+s+' @ '+arr.map(bi=>BANDS[bi].name).join('+'));if(k==='body'&&bodyState[si])diaLines=Object.entries(bodyState[si].marks).map(([id,di])=>{const z=ZONES.find(z=>z.id===id);return DEVICES[di].name+' — '+z.label;});if(k==='facemap'&&faceState2[si]){if(faceState2[si].pts.length)diaLines.push('SaeboStimpod face/ear: '+faceState2[si].pts.map(i=>FACE_POINTS[i][0]).join(', ')+(faceState2[si].saeboTime?' — '+faceState2[si].saeboTime:''));if(faceState2[si].rez)diaLines.push('Rezzimax: '+faceState2[si].rez+' side'+(faceState2[si].rezTime?' — '+faceState2[si].rezTime:''));}
@@ -686,6 +672,8 @@ function openSummary(){let h='';let any=false;MODEL.forEach((sec,si)=>{const che
  if(sec.timePills&&timePillState[si])diaLines.push(sec.timePills.label+': '+timePillState[si]);
  if(sec.sectionTimeDropdown&&state.reveal[si+'-stime'])diaLines.push(sec.sectionTimeDropdown.label+': '+state.reveal[si+'-stime']);
  if(sec.diagramTimeDropdown&&state.reveal[si+'-dtime'])diaLines.push(sec.diagramTimeDropdown.label+': '+state.reveal[si+'-dtime']);
+ if(msTouched(si)){var _n=msCountModalities(si);diaLines.push('Multi-Sensory Approach ('+_n+'/9 modalities)');msSummaryLines(si).forEach(function(l){diaLines.push('  • '+l);});}
+ if(document.getElementById('review'+si)&&reviewTouched(si)){diaLines.push('NeuroSage Multisensory Score ('+reviewCount(si)+'/9 modalities)');reviewSummaryLines(si).forEach(function(l){diaLines.push('  • '+l);});}
  if(!checks.length&&!fL&&!fR&&!note&&!diaLines.length)return;any=true;
  h+='<div class="ss"><h3>'+sec.title+'</h3>';if(fL||fR)h+='<div class="sf">Finding — L: '+(fL||'—')+' · R: '+(fR||'—')+'</div>';
  sec.items.forEach((it,ii)=>{if(!state.checked[si+'-'+ii])return;const dz=(state.dose[si+'-'+ii]||'').trim();const rx=dosageStr(si,ii);let tail=rx?rx:dz;if(sec.revealDropdowns){const rp=state.reveal[si+'-'+ii+'-reps'],st=state.reveal[si+'-'+ii+'-sets'];const parts=[];if(rp)parts.push(rp);if(st)parts.push(st);if(parts.length)tail=parts.join(' · ');}if(sec.revealSingle){const sv=state.reveal[si+'-'+ii+'-single'];if(sv)tail=sv;}if(sec.revealPerItem&&sec.revealPerItem[ii]){const parts=[];sec.revealPerItem[ii].forEach((spec,di)=>{const v=state.reveal[si+'-'+ii+'-pi'+di];if(v)parts.push(v);});if(parts.length)tail=parts.join(' · ');}let label=it;if(sec.grouped&&sec.subheads){let head='';for(let j=ii;j>=0;j--){if(sec.subheads[j]!==undefined){head=sec.subheads[j];break;}}if(head)label=head+': '+it;}h+='<div class="si">'+label.replace(/</g,'&lt;')+(tail?' <span style="color:var(--teal);font-family:JetBrains Mono;font-size:11px">— '+tail.replace(/</g,'&lt;')+'</span>':'')+'</div>';});
@@ -695,22 +683,302 @@ function openSummary(){let h='';let any=false;MODEL.forEach((sec,si)=>{const che
 function closeSummary(){document.getElementById('modalbg').classList.remove('open');}
 document.getElementById('modalbg').addEventListener('click',e=>{if(e.target.id==='modalbg')closeSummary();});
 for(const si in ANCHORS){renderDiagram(+si,ANCHORS[si]);}
+// ===== MULTISENSORY DATA (Kyle's NSH checklist) =====
+// pattern: 'flat'  -> tier1 check reveals options[] directly as checkboxes
+//          'single'-> tier1 check, no tier2 (one implicit "Applied")
+//          'groups'-> tier1 check reveals subgroup labels; selecting a subgroup reveals its options
+const MULTISENSORY = [
+  { key:'olfactory', label:'Olfactory', pattern:'groups',
+    groups:[
+      { label:'Left Nostril', options:['Rosemary','Lavender'] },
+      { label:'Right Nostril', options:['Eucalyptus','Lavender','Frankincense','Peppermint'] }
+    ] },
+  { key:'blueglow', label:'Blue Glow FX Glasses', pattern:'single' },
+  { key:'blueeye', label:'Blue EyeLights', pattern:'flat',
+    options:['Outside Left Eye \u2192 Inside Right Eye','Outside Right Eye \u2192 Inside Left Eye'] },
+  { key:'sound', label:'Sound Therapy', pattern:'groups',
+    groups:[
+      { label:'Music Selection', options:['Theta Music','Alpha Music','Gamma Music','Classical Music','Metronome'] },
+      { label:'Metronome Delivery', options:['Left Ear','Right Ear'] }
+    ] },
+  { key:'games', label:'NeuroSage Hub Video Games', pattern:'flat',
+    options:['Canopy Ascent','Hedge Hunt','Fruit Catcher','Forest Journey','Mountain Climb','Sea Adventure'] },
+  { key:'estim', label:'Electrical Stimulation', pattern:'groups',
+    groups:[
+      { label:'Facial Placement', options:['Right Side of Face','Left Side of Face','Behind Left Ear','Behind Right Ear'] },
+      { label:'Pattern Option 1', options:['Right Face','Behind Left Ear','Behind Right Ear','Left Shoulder'] },
+      { label:'Pattern Option 2', options:['Behind Right Ear','Behind Left Ear'] },
+      { label:'Pattern Option 3', options:['Left Back Muscles'] },
+      { label:'Pattern Option 4', options:['Left Arm','Left Hand','Left Wrist'] },
+      { label:'Pattern Option 5', options:['Left Hip','Left Leg'] },
+      { label:'Pattern Option 6', options:['Two Electrodes Right Back','Two Electrodes Left Back'] },
+      { label:'Pattern Option 7', options:['Two Electrodes Left Back','One Electrode Left Shoulder','One Electrode Right Upper Trapezius'] }
+    ] },
+  { key:'pbm', label:'Photobiomodulation (PBM)', pattern:'groups',
+    groups:[
+      { label:'Vascular', options:['Left Carotid','Right Carotid'] },
+      { label:'Brain', options:['Behind Left Cerebellum','Behind Right Cerebellum','Forehead','Back of Head'] },
+      { label:'Body', options:['Spine','Right Face','Left Face','Hands','Feet','Stomach','Liver'] }
+    ] },
+  { key:'vibration', label:'Vibration', pattern:'flat',
+    options:['Right Face','Left Face','Tongue','Neck','Back','Shoulders','Hands','Feet','Stomach'] },
+  { key:'led', label:'LED Panel', pattern:'groups',
+    groups:[
+      { label:'Panel Selection', options:['Red Panel','Green Panel'] },
+      { label:'Protocol Selection', options:['Blood Flow','Regulation','Recovery','Abdomen','Back Area','Sleep / Calm','Inflammation','Discomfort'] }
+    ] }
+];
+
+
+// ===== MULTISENSORY WIDGET (Palmar Reflex §15) =====
+// state shape: msState[si] = { on:bool, mods:{ key:{ on:bool, flat:{opt:bool}, groups:{ glabel:{ on:bool, opts:{opt:bool} } } } } }
+const msState={};
+function ensureMS(si){
+  if(!msState[si]) msState[si]={on:false, mods:{}};
+  return msState[si];
+}
+function ensureMod(si,key){
+  const st=ensureMS(si);
+  if(!st.mods[key]) st.mods[key]={on:false, flat:{}, groups:{}};
+  return st.mods[key];
+}
+function buildMultisensory(si){
+  const host=document.getElementById('multisensory'+si);
+  if(!host) return;
+  ensureMS(si);
+  let h='<div class="ms-toggle item" id="mstoggle'+si+'"><span class="box">'+CHECK+'</span><span class="lab" style="font-weight:600">Multi-Sensory Approach</span></div>';
+  h+='<div class="ms-body" id="msbody'+si+'" style="display:none"></div>';
+  host.innerHTML=h;
+  const tog=document.getElementById('mstoggle'+si);
+  tog.onclick=()=>{const st=ensureMS(si);st.on=!st.on;tog.classList.toggle('checked',st.on);document.getElementById('msbody'+si).style.display=st.on?'block':'none';if(st.on&&!document.getElementById('msbody'+si).innerHTML.trim())renderMSTier1(si);recompute();};
+}
+function renderMSTier1(si){
+  const body=document.getElementById('msbody'+si);
+  let h='<div class="ms-tier1head">Tier 1 — Modalities Added</div><div class="ms-mods">';
+  MULTISENSORY.forEach(mod=>{
+    h+='<div class="ms-mod" data-key="'+mod.key+'">';
+    h+='<div class="item ms-modrow" data-si="'+si+'" data-key="'+mod.key+'"><span class="box">'+CHECK+'</span><span class="lab">'+mod.label.replace(/</g,'&lt;')+'</span></div>';
+    h+='<div class="ms-tier2" id="ms2-'+si+'-'+mod.key+'" style="display:none"></div>';
+    h+='</div>';
+  });
+  h+='</div>';
+  body.innerHTML=h;
+  body.querySelectorAll('.ms-modrow').forEach(r=>r.onclick=()=>{
+    const key=r.dataset.key;const mod=ensureMod(si,key);mod.on=!mod.on;r.classList.toggle('checked',mod.on);
+    const t2=document.getElementById('ms2-'+si+'-'+key);
+    const def=MULTISENSORY.find(m=>m.key===key);
+    if(mod.on){ if(def.pattern!=='single'){ t2.style.display='block'; if(!t2.innerHTML.trim()) renderMSTier2(si,key); } }
+    else { t2.style.display='none'; }
+    recompute();
+  });
+}
+function renderMSTier2(si,key){
+  const def=MULTISENSORY.find(m=>m.key===key);
+  const t2=document.getElementById('ms2-'+si+'-'+key);
+  const mod=ensureMod(si,key);
+  let h='';
+  if(def.pattern==='flat'){
+    h+='<div class="ms-optlist">';
+    def.options.forEach(opt=>{ h+='<div class="item ms-opt" data-si="'+si+'" data-key="'+key+'" data-opt="'+opt.replace(/"/g,'&quot;')+'"><span class="box">'+CHECK+'</span><span class="lab">'+opt.replace(/</g,'&lt;')+'</span></div>'; });
+    h+='</div>';
+  } else if(def.pattern==='groups'){
+    def.groups.forEach((g,gi)=>{
+      h+='<div class="ms-group" data-glabel="'+g.label.replace(/"/g,'&quot;')+'">';
+      h+='<div class="item ms-grouprow" data-si="'+si+'" data-key="'+key+'" data-glabel="'+g.label.replace(/"/g,'&quot;')+'"><span class="box">'+CHECK+'</span><span class="lab" style="font-weight:600">'+g.label.replace(/</g,'&lt;')+'</span></div>';
+      h+='<div class="ms-groupopts" id="msg-'+si+'-'+key+'-'+gi+'" style="display:none">';
+      g.options.forEach(opt=>{ h+='<div class="item ms-gopt" data-si="'+si+'" data-key="'+key+'" data-glabel="'+g.label.replace(/"/g,'&quot;')+'" data-opt="'+opt.replace(/"/g,'&quot;')+'"><span class="box">'+CHECK+'</span><span class="lab">'+opt.replace(/</g,'&lt;')+'</span></div>'; });
+      h+='</div></div>';
+    });
+  }
+  t2.innerHTML=h;
+  // flat option handlers
+  t2.querySelectorAll('.ms-opt').forEach(o=>o.onclick=()=>{
+    const opt=o.dataset.opt;mod.flat[opt]=!mod.flat[opt];o.classList.toggle('checked',mod.flat[opt]);recompute();
+  });
+  // group row handlers
+  t2.querySelectorAll('.ms-grouprow').forEach(r=>r.onclick=()=>{
+    const gl=r.dataset.glabel;
+    if(!mod.groups[gl])mod.groups[gl]={on:false,opts:{}};
+    mod.groups[gl].on=!mod.groups[gl].on;
+    r.classList.toggle('checked',mod.groups[gl].on);
+    const gi=def.groups.findIndex(g=>g.label===gl);
+    const optbox=document.getElementById('msg-'+si+'-'+key+'-'+gi);
+    optbox.style.display=mod.groups[gl].on?'block':'none';
+    recompute();
+  });
+  // group option handlers
+  t2.querySelectorAll('.ms-gopt').forEach(o=>o.onclick=()=>{
+    const gl=o.dataset.glabel,opt=o.dataset.opt;
+    if(!mod.groups[gl])mod.groups[gl]={on:false,opts:{}};
+    mod.groups[gl].opts[opt]=!mod.groups[gl].opts[opt];
+    o.classList.toggle('checked',mod.groups[gl].opts[opt]);
+    recompute();
+  });
+}
+function msTouched(si){
+  const st=msState[si];
+  if(!st||!st.on)return false;
+  return Object.values(st.mods).some(m=>m.on);
+}
+function msCountModalities(si){
+  const st=msState[si];
+  if(!st||!st.on)return 0;
+  return Object.values(st.mods).filter(m=>m.on).length;
+}
+function msSummaryLines(si){
+  const st=msState[si];
+  if(!st||!st.on)return [];
+  const lines=[];
+  MULTISENSORY.forEach(def=>{
+    const mod=st.mods[def.key];
+    if(!mod||!mod.on)return;
+    if(def.pattern==='single'){ lines.push(def.label); return; }
+    if(def.pattern==='flat'){
+      const sel=Object.keys(mod.flat).filter(o=>mod.flat[o]);
+      lines.push(def.label+(sel.length?': '+sel.join(', '):''));
+      return;
+    }
+    if(def.pattern==='groups'){
+      const parts=[];
+      def.groups.forEach(g=>{
+        const gst=mod.groups[g.label];
+        if(gst&&gst.on){
+          const sel=Object.keys(gst.opts).filter(o=>gst.opts[o]);
+          parts.push(g.label+(sel.length?' ('+sel.join(', ')+')':''));
+        }
+      });
+      lines.push(def.label+(parts.length?': '+parts.join('; '):''));
+    }
+  });
+  return lines;
+}
+
+
+// ===== §35 REVIEW PANEL: NeuroSage Multisensory Score (auto-check, editable) =====
+// reviewState[si] = { manual: { modKey: true/false } }  // explicit therapist overrides
+const reviewState={};
+const REVIEW_MODS=[
+  {key:'olfactory', label:'Olfactory'},
+  {key:'blueglow', label:'Blue Glow FX Glasses'},
+  {key:'blueeye', label:'Blue EyeLights'},
+  {key:'sound', label:'Sound Therapy'},
+  {key:'games', label:'NeuroSage Hub Video Games'},
+  {key:'estim', label:'Electrical Stimulation'},
+  {key:'pbm', label:'Photobiomodulation (PBM)'},
+  {key:'vibration', label:'Vibration'},
+  {key:'led', label:'LED Panel'}
+];
+// detect whether a modality was used anywhere in the session (standalone sections OR any multisensory block)
+function findSectionIdx(title){return MODEL.findIndex(s=>s.title===title);}
+function anyChecked(si,idxList){if(si<0)return false;return idxList.some(ii=>state.checked[si+'-'+ii]);}
+function anyCheckedAll(si){if(si<0)return false;return MODEL[si].items.some((_,ii)=>state.checked[si+'-'+ii]);}
+function msModUsedAnywhere(modKey){
+  for(const si in msState){const st=msState[si];if(st&&st.on&&st.mods[modKey]&&st.mods[modKey].on)return true;}
+  return false;
+}
+function modalityAuto(modKey){
+  const smell=findSectionIdx('Smell (Olfactory Training)');
+  const eyel=findSectionIdx('Eye Lights / Visual Stimulation');
+  const music=findSectionIdx('Music Therapy');
+  const neuro=findSectionIdx('Neurosage');
+  const led=findSectionIdx('Light Panel Therapy');
+  const face=findSectionIdx('Face Stimulation');
+  const tongue=findSectionIdx('Tongue Stimulation');
+  const stimpod=findSectionIdx('Stimpod Placement (Body)');
+  const redir=findSectionIdx('Red / Infrared Laser Therapy');
+  const green=findSectionIdx('Green Laser Therapy');
+  switch(modKey){
+    case 'olfactory': return anyCheckedAll(smell) || msModUsedAnywhere('olfactory');
+    case 'blueglow':  return anyChecked(eyel,[0]) || msModUsedAnywhere('blueglow');
+    case 'blueeye':   return anyChecked(eyel,[1]) || msModUsedAnywhere('blueeye');
+    case 'sound':     return anyCheckedAll(music) || msModUsedAnywhere('sound');
+    case 'games':     return anyChecked(neuro,[2,3,4,5,6]) || msModUsedAnywhere('games');
+    case 'estim':     return diagramTouched(face) || (tongueState[tongue]&&tongueTouched(tongue)) || diagramTouched(stimpod) || msModUsedAnywhere('estim');
+    case 'pbm':       return diagramTouched(redir) || diagramTouched(green) || msModUsedAnywhere('pbm');
+    case 'vibration': return msModUsedAnywhere('vibration');
+    case 'led':       return anyCheckedAll(led) || msModUsedAnywhere('led');
+  }
+  return false;
+}
+// effective state: manual override wins if present, else auto
+function modalityEffective(si,modKey){
+  const m=reviewState[si]&&reviewState[si].manual;
+  if(m&&Object.prototype.hasOwnProperty.call(m,modKey))return m[modKey];
+  return modalityAuto(modKey);
+}
+function buildReview(si){
+  const host=document.getElementById('review'+si);
+  if(!host)return;
+  if(!reviewState[si])reviewState[si]={manual:{}};
+  let h='<div class="rv-head">NeuroSage Multisensory Score</div>';
+  h+='<div class="rv-hint">Auto-checks as modalities are used through the session. Editable — tap to override.</div>';
+  h+='<div class="rv-grid"><div class="rv-colh">Modality</div><div class="rv-colh rv-applied">Applied</div>';
+  REVIEW_MODS.forEach(m=>{
+    h+='<div class="rv-modlabel">'+m.label.replace(/</g,'&lt;')+'</div>';
+    h+='<div class="rv-applied"><span class="rv-box" data-si="'+si+'" data-key="'+m.key+'">'+CHECK+'</span></div>';
+  });
+  h+='</div>';
+  h+='<div class="rv-total">Total Modalities Used: <b id="rvtotal'+si+'">0</b> / 9</div>';
+  host.innerHTML=h;
+  host.querySelectorAll('.rv-box').forEach(b=>b.onclick=()=>{
+    const key=b.dataset.key;
+    const cur=modalityEffective(si,key);
+    reviewState[si].manual[key]=!cur; // explicit override
+    renderReview(si);recompute();
+  });
+  renderReview(si);
+}
+function renderReview(si){
+  if(!document.getElementById('review'+si))return;
+  let n=0;
+  REVIEW_MODS.forEach(m=>{
+    const on=modalityEffective(si,m.key);
+    if(on)n++;
+    const box=document.querySelector('.rv-box[data-si="'+si+'"][data-key="'+m.key+'"]');
+    if(box)box.classList.toggle('checked',on);
+  });
+  const tot=document.getElementById('rvtotal'+si);
+  if(tot)tot.textContent=n;
+}
+function renderAllReviews(){for(const si in reviewState)renderReview(si);}
+function reviewCount(si){let n=0;REVIEW_MODS.forEach(m=>{if(modalityEffective(si,m.key))n++;});return n;}
+function reviewTouched(si){return reviewCount(si)>0;}
+function reviewSummaryLines(si){
+  const lines=[];
+  REVIEW_MODS.forEach(m=>{if(modalityEffective(si,m.key))lines.push(m.label);});
+  return lines;
+}
+
 MODEL.forEach((sec,si)=>{if(sec.customWidget==='tongue')buildTongue(si);if(sec.customWidget==='softwave')buildSoftwave(si);if(sec.timePills)buildTimePills(si);});
+
+// ---- inject multisensory host into sections 13-34 (indices 12-33); review panel on §35 (idx 34) ----
+(function(){
+  var lastIdx=MODEL.length-1; // §35 review section
+  for(var msi=12; msi<=33; msi++){
+    var card=document.getElementById('sec'+msi);
+    if(!card)continue;
+    var notes=card.querySelector('.notes');
+    if(!notes)continue;
+    var host=document.createElement('div');
+    host.className='ms-host';
+    host.id='multisensory'+msi;
+    card.insertBefore(host, notes);
+    buildMultisensory(msi);
+  }
+  // §35 review panel (auto-checking multisensory score)
+  var rcard=document.getElementById('sec'+lastIdx);
+  if(rcard){
+    var rnotes=rcard.querySelector('.notes');
+    var rhost=document.createElement('div');
+    rhost.className='rv-host';
+    rhost.id='review'+lastIdx;
+    rcard.insertBefore(rhost, rnotes);
+    buildReview(lastIdx);
+  }
+})();
+
 recompute();
 
-/* ============================================================================
-   OUTCOME FORM — end-of-session Daily Clinical Outcome Tracking (second view)
-============================================================================ */
-/* ============================================================================
-   OUTCOME FORM CONFIG — end-of-session Daily Clinical Outcome Tracking
-   Merged from Daily_Clinical_Outcome_Tracking + Primitive_Reflex_Developmental_Tracking.
-   Block types:
-     'checks'  : list of checkbox items under an optional subhead
-     'rating'  : list of items each rendered as a single 5-point dropdown
-     'radio'   : single-select group (rendered as one dropdown)
-     'notes'   : free-text textarea
-     'score'   : single-select dropdown (Functional Improvement Score)
-============================================================================ */
 const OUTCOME = {
   title: "Daily Clinical Outcome Tracking",
   ratingScale: ["Significant Improvement","Moderate Improvement","Mild Improvement","No Change","Worsened"],
@@ -739,7 +1007,6 @@ const OUTCOME = {
     { head:"Gait", type:"checks", items:["Improved gait pattern","Improved stride length","Improved heel strike","Improved arm swing","Improved balance during gait","Improved speed","No Change"] },
     { head:"Core & Posture", type:"checks", items:["Improved trunk control","Improved sitting posture","Improved standing posture","Improved endurance","Improved spinal stability","Improved postural reflexes","No Change"] },
 
-    /* MERGED: Primitive Reflex Integration upgraded to 5-point ratings + extra reflexes */
     { head:"Primitive Reflex Integration", type:"rating",
       items:["Moro Reflex","Acoustic Startle Reflex","Rooting Reflex","Palmar Reflex","Babinski Reflex","Spinal Galant Reflex","ATNR","STNR","TLR"] },
     { head:"Ocular Motor Development", type:"rating", items:["Pursuits","Saccades","Fixation"] },
@@ -795,10 +1062,9 @@ function renderOutcome(){
   const flush=()=>{if(card){h+='<section class="sec" id="osec'+idx+'"><div class="sec-h"><h3>'+cardTitle+'</h3></div>'+card+'</section>';rh+='<a href="#osec'+idx+'"><span class="tick">'+(idx+1)+'</span><span>'+cardTitle+'</span></a>';idx++;card='';}};
   OUTCOME.groups.forEach((g,gi)=>{
     if(g.head&&(g.type==='section'||g.type==='checks'||g.type==='rating'||g.type==='radio'||g.type==='score')){
-      // start a new card on each top-level head
       flush();cardTitle=g.head;
     }
-    if(g.type==='section')return; // header-only divider; subs follow
+    if(g.type==='section')return;
     if(g.sub)card+='<div class="osub">'+g.sub+'</div>';
     if(g.type==='checks'){
       g.items.forEach((it,ii)=>{const key=gi+'-'+ii;card+='<div class="itemwrap"><div class="item oitem" data-ok="'+key+'"><span class="box">'+CHECK+'</span><span class="lab">'+it.replace(/</g,'&lt;')+'</span></div></div>';});
